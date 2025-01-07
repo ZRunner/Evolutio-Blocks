@@ -1,0 +1,28 @@
+{
+    "apiVersion": 2,
+    "name": "evolutio/appbar",
+    "title": "Appbar",
+    "category": "design",
+    "description": "A sticky appbar with customizable links and a contact button.",
+    "icon": "menu",
+    "attributes": {
+        "links": {
+            "type": "array",
+            "default": []
+        },
+        "websiteName": {
+            "type": "string"
+        },
+        "contactUrl": {
+            "type": "string",
+            "default": "/contact"
+        }
+    },
+    "supports": {
+        "align": false,
+        "html": false
+    },
+    "style": "evolutio-appbar-style",
+    "editorScript": "file:./index.js",
+    "render": "file:./render.php"
+}

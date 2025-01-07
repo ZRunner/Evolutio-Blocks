@@ -1,0 +1,40 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "evolutio/header-image",
+	"version": "0.1.0",
+	"title": "Header Image",
+	"category": "media",
+	"icon": "cover-image",
+	"description": "An image with a colored gradient",
+	"example": {},
+	"attributes": {
+		"minHeight": {
+			"type": "string",
+			"default": "800px"
+		}
+	},
+	"supports": {
+		"align": true,
+		"background": {
+			"backgroundImage": true,
+			"backgroundSize": true,
+			"__experimentalSkipSerialization": true
+		},
+		"color": {
+			"background": true,
+			"text": false,
+			"__experimentalSkipSerialization": false
+		},
+		"html": false,
+		"spacing": {
+			"margin": true,
+			"padding": true,
+			"blockGap": true,
+			"__experimentalSkipSerialization": true
+		}
+	},
+	"textdomain": "header-image",
+	"editorScript": "file:./index.js",
+	"render": "file:./render.php"
+}
