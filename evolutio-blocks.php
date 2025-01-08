@@ -28,7 +28,7 @@ if (!defined('ABSPATH')) {
 function evolutio_blocks_init()
 {
 	$plugin_dir = __DIR__;
-	$build_dir = $plugin_dir . '/build';
+	$build_dir = $plugin_dir . '/build/blocks';
 
 	// Automatically register all blocks in the 'build' directory
 	foreach (glob($build_dir . '/*', GLOB_ONLYDIR) as $block_dir) {
@@ -39,9 +39,9 @@ function evolutio_blocks_init()
 	$plugin_url = plugin_dir_url(__FILE__);
 	wp_enqueue_style(
 		'evolutio-appbar-style',
-		$plugin_url . 'src/appbar/style.css',
+		$plugin_url . 'src/blocks/appbar/style.css',
 		[],
-		filemtime($plugin_dir . '/src/appbar/style.css') // Cache-busting based on file modification time
+		filemtime($plugin_dir . '/src/blocks/appbar/style.css') // Cache-busting based on file modification time
 	);
 }
 add_action('init', 'evolutio_blocks_init');

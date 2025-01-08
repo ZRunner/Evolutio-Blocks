@@ -21,8 +21,7 @@ node_modules/
 .DS_Store
 
 # Test blocks
-src/copyright-date-block/
-src/example*
+src/blocks/example*
 
 # Optional npm cache directory
 .npm
