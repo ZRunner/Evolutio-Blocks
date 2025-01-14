@@ -1,0 +1,10 @@
+{
+    "autoload": {
+        "psr-4": {
+            "Evolutio\\": "src/"
+        }
+    },
+    "require-dev": {
+        "php-stubs/wordpress-stubs": "^6.7"
+    }
+}

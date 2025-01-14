@@ -37,3 +37,6 @@ src/blocks/example*
 
 # dotenv environment variables file
 .env
+
+# Composer folder
+vendor/

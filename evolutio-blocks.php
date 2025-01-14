@@ -16,8 +16,7 @@ namespace Evolutio;
  * @package EvolutioBlocks
  */
 
-require_once __DIR__ . '/src/utils.php';
-require_once __DIR__ . '/src/templates/home-template.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
 use Evolutio\Utils\WizardItemTypes;
 use Evolutio\Template\HomePageTemplateUtil;
