@@ -8,10 +8,12 @@ export default function Edit({ attributes, setAttributes }) {
     const { links, websiteName, contactUrl } = attributes;
     const [siteIconUrl, setSiteIconUrl] = useState('');
 
-    const siteIconId = wp.data.select('core').getEntityRecord('root', 'site').site_icon;
-    const { title: siteTitle } = wp.data.select('core').getSite();
+    const siteIconId = wp.data.select('core').getEntityRecord('root', 'site')?.site_icon;
+    const siteAttributes = wp.data.select('core').getSite();
+    const siteTitle = siteAttributes?.title ?? "";
 
     useEffect(() => {
+        if (!siteIconId) return;
         const unsubscribe = wp.data.subscribe(() => {
             const media = wp.data.select('core').getMedia(siteIconId);
             if (media) {
