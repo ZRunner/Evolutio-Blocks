@@ -1,9 +1,11 @@
 <?php
 
+namespace Evolutio;
+
 /**
- * Plugin Name:       Evolutio Block
+ * Plugin Name:       Evolutio Blocks
  * Description:       A cool blocks collection for the Evolutio Avocats lawfirm website.
- * Requires at least: 6.1
+ * Requires at least: 6.7
  * Requires PHP:      7.0
  * Version:           1.0.0
  * Author:            Arthur Blaise
@@ -11,12 +13,17 @@
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       evolutio
  *
- * @package CreateBlock
+ * @package EvolutioBlocks
  */
 
-if (!defined('ABSPATH')) {
-	exit; // Exit if accessed directly.
-}
+require_once __DIR__ . '/src/utils.php';
+require_once __DIR__ . '/src/templates/home-template.php';
+
+use Evolutio\Utils\WizardItemTypes;
+use Evolutio\Template\HomePageTemplateUtil;
+
+// Exit if accessed directly
+defined('ABSPATH') || exit();
 
 /**
  * Registers the block using the metadata loaded from the `block.json` file.
@@ -44,4 +51,23 @@ function evolutio_blocks_init()
 		filemtime($plugin_dir . '/src/blocks/appbar/style.css') // Cache-busting based on file modification time
 	);
 }
-add_action('init', 'evolutio_blocks_init');
+add_action('init', __NAMESPACE__ . '\\evolutio_blocks_init');
+
+function evolutio_register_header_template()
+{
+	if (function_exists('register_block_pattern')) {
+		$template_part_path = plugin_dir_path(__FILE__) . 'src/parts/header.html';
+		register_block_pattern(
+			'evolutio/header',
+			array(
+				'title'       => __('Evolutio Header', 'evolutio'),
+				'description' => _x('A custom header block pattern for Evolutio.', 'Block pattern description', 'evolutio'),
+				'filePath'     => $template_part_path,
+				'categories'  => array('header'),
+				'postTypes'  => array('wp_block'),
+				'keywords'    => array('header', 'evolutio'),
+			)
+		);
+	}
+}
+add_action('init', __NAMESPACE__ . '\\evolutio_register_header_template');
