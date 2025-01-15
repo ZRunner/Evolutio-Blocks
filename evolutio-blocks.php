@@ -18,8 +18,7 @@ namespace Evolutio;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-use Evolutio\Utils\WizardItemTypes;
-use Evolutio\Template\HomePageTemplateUtil;
+use Evolutio\Templates\HomePageTemplateUtil;
 
 // Exit if accessed directly
 defined('ABSPATH') || exit();
@@ -51,6 +50,12 @@ function evolutio_blocks_init()
 	);
 }
 add_action('init', __NAMESPACE__ . '\\evolutio_blocks_init');
+
+function evolutio_register_fullpage_template()
+{
+	HomePageTemplateUtil::RegisterTemplate();
+}
+add_action('init', __NAMESPACE__ . '\\evolutio_register_fullpage_template');
 
 function evolutio_register_header_template()
 {
