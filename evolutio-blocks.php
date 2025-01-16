@@ -55,6 +55,12 @@ function evolutio_register_blocks()
 		[],
 		filemtime($plugin_dir . '/src/blocks/header-image/style.css') // Cache-busting based on file modification time
 	);
+	wp_enqueue_style(
+		'evolutio-intro-quote-style',
+		$plugin_url . 'src/blocks/intro-quote/style.css',
+		[],
+		filemtime($plugin_dir . '/src/blocks/intro-quote/style.css') // Cache-busting based on file modification time
+	);
 }
 add_action('init', __NAMESPACE__ . '\\evolutio_register_blocks');
 

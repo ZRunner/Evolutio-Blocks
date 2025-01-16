@@ -1,0 +1,60 @@
+:root {
+    --evo-introquote-color-accent: #F5A524;
+}
+
+.evolutio-quote-block {
+    position: relative;
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+.evolutio-quote-content {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    padding: 1.5rem;
+    padding-right: 0;
+    font-size: 1.125rem;
+    font-style: italic;
+    line-height: 2.5rem;
+}
+
+@media (max-width: 600px) {
+    .evolutio-quote-content {
+        padding-left: 0;
+    }
+}
+
+.evolutio-quote-svg {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    fill: #d2d3d3;
+}
+
+.evolutio-quote-svg-start {
+    top: 10px;
+    left: 10px;
+}
+
+.evolutio-quote-svg-end {
+    bottom: 10px;
+    right: 10px;
+    transform: rotate(180deg);
+}
+
+.evolutio-quote-link {
+    display: flex;
+    margin-bottom: 2rem;
+    justify-content: flex-end;
+    column-gap: 0.25rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--evo-introquote-color-accent);
+    text-decoration: none;
+}
+
+.evolutio-quote-link:hover {
+    color: #e4941f;
+    text-decoration: underline;
+}

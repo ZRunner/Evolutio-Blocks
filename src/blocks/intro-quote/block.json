@@ -1,0 +1,35 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "evolutio/intro-quote",
+    "version": "0.1.0",
+    "title": "Intro Quote",
+    "category": "text",
+    "icon": "format-quote",
+    "description": "A short quote with a link to another page",
+    "example": {
+        "attributes": {
+            "content": "He was the best of us all."
+        }
+    },
+    "attributes": {
+        "content": {
+            "type": "string",
+            "default": ""
+        },
+        "link": {
+            "type": "string",
+            "default": "#"
+        },
+        "linkText": {
+            "type": "string",
+            "default": "Read more"
+        }
+    },
+    "supports": {
+        "html": false
+    },
+    "style": "evolutio-intro-quote-style",
+    "editorScript": "file:./index.js",
+    "render": "file:./render.php"
+}
