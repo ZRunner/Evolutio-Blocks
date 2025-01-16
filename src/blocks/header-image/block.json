@@ -34,13 +34,7 @@
 			"text": true,
 			"__experimentalSkipSerialization": false
 		},
-		"html": false,
-		"spacing": {
-			"margin": true,
-			"padding": true,
-			"blockGap": true,
-			"__experimentalSkipSerialization": true
-		}
+		"html": false
 	},
 	"textdomain": "header-image",
 	"style": "evolutio-header-image-style",
