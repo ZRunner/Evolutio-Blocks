@@ -16,14 +16,16 @@
 .evolutio-title {
     font-size: 4rem;
     font-weight: 200;
+    letter-spacing: 3px;
     margin: 0;
     color: inherit;
 }
 
 .evolutio-subtitle {
+    margin: 0;
     font-size: 2.25rem;
     font-weight: 300;
-    margin: 0;
+    line-height: 130%;
     white-space: pre;
     color: inherit;
 }
