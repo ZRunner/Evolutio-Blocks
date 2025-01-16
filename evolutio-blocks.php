@@ -19,6 +19,7 @@ namespace Evolutio;
 require_once __DIR__ . '/vendor/autoload.php';
 
 use Evolutio\Templates\HomePageTemplateUtil;
+use Evolutio\Parts\HeaderPatternUtil;
 
 // Exit if accessed directly
 defined('ABSPATH') || exit();
@@ -30,7 +31,7 @@ defined('ABSPATH') || exit();
  *
  * @see https://developer.wordpress.org/reference/functions/register_block_type/
  */
-function evolutio_blocks_init()
+function evolutio_register_blocks()
 {
 	$plugin_dir = __DIR__;
 	$build_dir = $plugin_dir . '/build/blocks';
@@ -49,29 +50,16 @@ function evolutio_blocks_init()
 		filemtime($plugin_dir . '/src/blocks/appbar/style.css') // Cache-busting based on file modification time
 	);
 }
-add_action('init', __NAMESPACE__ . '\\evolutio_blocks_init');
+add_action('init', __NAMESPACE__ . '\\evolutio_register_blocks');
 
-function evolutio_register_fullpage_template()
+function evolutio_register_templates()
 {
 	HomePageTemplateUtil::RegisterTemplate();
 }
-add_action('init', __NAMESPACE__ . '\\evolutio_register_fullpage_template');
+add_action('init', __NAMESPACE__ . '\\evolutio_register_templates');
 
-function evolutio_register_header_template()
+function evolutio_register_patterns()
 {
-	if (function_exists('register_block_pattern')) {
-		$template_part_path = plugin_dir_path(__FILE__) . 'src/parts/header.html';
-		register_block_pattern(
-			'evolutio/header',
-			array(
-				'title'       => __('Evolutio Header', 'evolutio'),
-				'description' => _x('A custom header block pattern for Evolutio.', 'Block pattern description', 'evolutio'),
-				'filePath'     => $template_part_path,
-				'categories'  => array('header'),
-				'postTypes'  => array('wp_block'),
-				'keywords'    => array('header', 'evolutio'),
-			)
-		);
-	}
+	HeaderPatternUtil::RegisterPattern();
 }
-add_action('init', __NAMESPACE__ . '\\evolutio_register_header_template');
+add_action('init', __NAMESPACE__ . '\\evolutio_register_patterns');
