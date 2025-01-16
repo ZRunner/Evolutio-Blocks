@@ -1,22 +1,20 @@
 //@ts-check
-/**
- * React hook that is used to mark the block wrapper element.
- * It provides all the necessary props like the class name.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
- */
-import { useBlockProps } from '@wordpress/block-editor';
+
+import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
+import { TextControl, TextareaControl, PanelBody, PanelRow } from '@wordpress/components';
+import { Fragment } from 'react/jsx-runtime';
 
 /**
- * The edit function describes the structure of your block in the context of the
- * editor. This represents what the editor will render when the block is used.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#edit
- * 
- * @argument {import('@wordpress/blocks').BlockEditProps<{minHeight: string}>} props
+ * @argument {import('@wordpress/blocks').BlockEditProps<
+ * 	{
+ * 		minHeight: string,
+ * 		title: string,
+ * 		subtitle: string
+ *	}>} props
  * @return {import('react').ReactElement} Element to render.
  */
 export default function Edit({ attributes, setAttributes }) {
+	const { title, subtitle } = attributes;
 	// extract background style from block props
 	const props = useBlockProps();
 	const { backgroundColor, backgroundImage } = props.style;
@@ -31,8 +29,49 @@ export default function Edit({ attributes, setAttributes }) {
 		backgroundImage: backgroundImageStyle,
 	};
 
+	/**
+	 * @param {string} value The new image title
+	 */
+	const updateTitle = (value) => {
+		setAttributes({ title: value });
+	};
+
+	/**
+	 * @param {string} value The new image subtitle
+	 */
+	const updateSubtitle = (value) => {
+		setAttributes({ subtitle: value });
+	}
+
 	return (
-		<div {...useBlockProps({ style: customStyle })}></div>
+		<Fragment>
+			<InspectorControls>
+				<PanelBody title="Text Settings" initialOpen>
+					<PanelRow>
+						<TextControl
+							label="Title"
+							value={title}
+							onChange={updateTitle}
+							__nextHasNoMarginBottom
+						/>
+					</PanelRow>
+					<PanelRow>
+						<TextareaControl
+							label="Subtitle"
+							value={subtitle}
+							onChange={updateSubtitle}
+							__nextHasNoMarginBottom
+						/>
+					</PanelRow>
+				</PanelBody>
+			</InspectorControls>
+			<div {...useBlockProps({ style: customStyle, className: "evolutio-background-container" })}>
+				<div className="evolutio-text-container">
+					<h1 className="evolutio-title">{title}</h1>
+					<h2 className="evolutio-subtitle">{subtitle}</h2>
+				</div>
+			</div>
+		</Fragment>
 	);
 }
 

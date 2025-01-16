@@ -12,6 +12,14 @@
 		"minHeight": {
 			"type": "string",
 			"default": "800px"
+		},
+		"title": {
+			"type": "string",
+			"default": ""
+		},
+		"subtitle": {
+			"type": "string",
+			"default": ""
 		}
 	},
 	"supports": {
@@ -23,7 +31,7 @@
 		},
 		"color": {
 			"background": true,
-			"text": false,
+			"text": true,
 			"__experimentalSkipSerialization": false
 		},
 		"html": false,
@@ -35,6 +43,7 @@
 		}
 	},
 	"textdomain": "header-image",
+	"style": "evolutio-header-image-style",
 	"editorScript": "file:./index.js",
 	"render": "file:./render.php"
 }

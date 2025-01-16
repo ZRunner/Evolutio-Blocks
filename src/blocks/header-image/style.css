@@ -1,0 +1,56 @@
+.evolutio-background-container {
+    position: relative;
+    background-position: center;
+}
+
+.evolutio-text-container {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1.5rem;
+    bottom: 9rem;
+    max-width: 90%;
+    margin: 0 12vw;
+}
+
+.evolutio-title {
+    font-size: 4rem;
+    font-weight: 200;
+    margin: 0;
+    color: inherit;
+}
+
+.evolutio-subtitle {
+    font-size: 2.25rem;
+    font-weight: 300;
+    margin: 0;
+    white-space: pre;
+    color: inherit;
+}
+
+@media (max-width: 782px) {
+    .evolutio-title {
+        font-size: 3rem;
+    }
+
+    .evolutio-subtitle {
+        font-size: 1.75rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .evolutio-text-container {
+        row-gap: 1rem;
+        margin: 0 1.25rem;
+    }
+
+    .evolutio-title {
+        font-size: 2.25rem;
+        font-weight: 500;
+    }
+
+    .evolutio-subtitle {
+        font-size: 1.25rem;
+        font-weight: 300;
+    }
+}
