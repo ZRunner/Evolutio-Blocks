@@ -1,15 +1,36 @@
+//@ts-check
+
 import { useBlockProps } from '@wordpress/block-editor';
 import { TextControl, Button, PanelBody, PanelRow } from '@wordpress/components';
 import { InspectorControls } from '@wordpress/block-editor';
 import { Fragment } from 'react/jsx-runtime';
 import { useEffect, useState } from 'react';
 
+/**
+ * @type {{
+*   data: typeof import('@wordpress/data'),
+* }}
+*/
+// @ts-ignore
+const wp = window.wp;
+
+/**
+ * @argument {import('@wordpress/blocks').BlockEditProps<
+ *  {
+ *      links: {label: string, url: string}[],
+ *      websiteName: string | undefined,
+ *      contactUrl: string
+ *  }>} props
+ * @return {import('react').ReactElement} Element to render.
+ */
 export default function Edit({ attributes, setAttributes }) {
     const { links, websiteName, contactUrl } = attributes;
     const [siteIconUrl, setSiteIconUrl] = useState('');
 
+    /** @type {string | undefined} */
     const siteIconId = wp.data.select('core').getEntityRecord('root', 'site')?.site_icon;
     const siteAttributes = wp.data.select('core').getSite();
+    /** @type {string} */
     const siteTitle = siteAttributes?.title ?? "";
 
     useEffect(() => {
@@ -27,21 +48,35 @@ export default function Edit({ attributes, setAttributes }) {
         setAttributes({ links: [...links, { label: '', url: '' }] });
     };
 
+    /**
+     * @param {number} index The index of the link to update.
+     * @param {"label" | "url"} key Which property to update.
+     * @param {string} value The new value.
+     */
     const updateLink = (index, key, value) => {
         const updatedLinks = [...links];
         updatedLinks[index][key] = value;
         setAttributes({ links: updatedLinks });
     };
 
+    /**
+     * @param {number} index The index of the link to remove.
+     */
     const removeLink = (index) => {
         const updatedLinks = links.filter((_, i) => i !== index);
         setAttributes({ links: updatedLinks });
     };
 
+    /**
+     * @param {string} value The new website name to use in the mobile appbar
+     */
     const updateWebsiteName = (value) => {
         setAttributes({ websiteName: value || null });
     }
 
+    /**
+     * @param {string} value The new contact URL
+     */
     const updateContactUrl = (value) => {
         setAttributes({ contactUrl: value });
     }
@@ -74,14 +109,14 @@ export default function Edit({ attributes, setAttributes }) {
                     ))}
                     <PanelRow>
                         <TextControl
-                            label={`Website name`}
-                            value={websiteName}
+                            label="Website name"
+                            value={websiteName ?? ""}
                             onChange={updateWebsiteName}
                         />
                     </PanelRow>
                     <PanelRow>
                         <TextControl
-                            label={`Contact page URL`}
+                            label="Contact page URL"
                             value={contactUrl}
                             onChange={updateContactUrl}
                         />
@@ -93,27 +128,42 @@ export default function Edit({ attributes, setAttributes }) {
                 </div>
                 <div className="evolutio-appbar__floating">
                     <nav className="evolutio-appbar__nav">
-                        {links.map((link, index) => (
-                            <span key={index} href={link.url} className="evolutio-appbar__link">
+                        {links.map((link) => (
+                            <span key={link.label} className="evolutio-appbar__link">
                                 {link.label}
                             </span>
                         ))}
                     </nav>
-                    <span className="evolutio-appbar__button" href={contactUrl}>Contact</span>
+                    <span className="evolutio-appbar__button" >Contact</span>
                 </div>
             </div>
-            <div className="evolutio-appbar-mobile-container">
-                <span className="evolutio-appbar-brand-container" href="/">
+            <div {...useBlockProps({ className: "evolutio-appbar-mobile-container" })}>
+                <span className="evolutio-appbar-brand-container">
                     <img src={siteIconUrl} alt={(websiteName ?? siteTitle) + ' Logo'}
                         width="50" height="50" />
                     <span>{websiteName ?? siteTitle}</span>
                 </span>
-                <svg width="24" height="24" viewBox="0 0 24 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <line x1="1.43945" y1="1.5" x2="22.068" y2="1.5" stroke="#092747" strokeWidth="2" strokeLinecap="round" />
-                    <line x1="1.43945" y1="16.5859" x2="22.068" y2="16.5859" stroke="#092747" strokeWidth="2" strokeLinecap="round" />
-                    <line x1="1.43945" y1="9.04297" x2="22.068" y2="9.04297" stroke="#092747" strokeWidth="2" strokeLinecap="round" />
-                </svg>
+                <input type="checkbox" id="nav-toggle" className="evolutio-mobile-nav-toggle" hidden />
+                <label htmlFor="nav-toggle" className="evolutio-burger-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <line x1="1.43945" y1="1.5" x2="22.068" y2="1.5" stroke="#092747" strokeWidth="2" strokeLinecap="round" />
+                        <line x1="1.43945" y1="9.04297" x2="22.068" y2="9.04297" stroke="#092747" strokeWidth="2" strokeLinecap="round" />
+                        <line x1="1.43945" y1="16.5859" x2="22.068" y2="16.5859" stroke="#092747" strokeWidth="2" strokeLinecap="round" />
+                    </svg>
+                </label>
+                <nav className="evolutio-mobile-nav">
+                    <ul>
+                        {links.map((link) => (
+                            <li key={link.label}>
+                                <span className="evolutio-appbar__link">
+                                    {link.label}
+                                </span>
+                            </li>
+                        ))}
+                        <span className="evolutio-appbar__button">Contactez-nous</span>
+                    </ul>
+                </nav>
             </div>
-        </Fragment>
+        </Fragment >
     );
 }

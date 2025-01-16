@@ -139,7 +139,7 @@
     row-gap: 1rem;
 }
 
-.evolutio-mobile-nav ul li a {
+.evolutio-mobile-nav .evolutio-appbar__link {
     text-decoration: none;
     font-size: 1rem;
     color: var(--evo-appbar-color-primary);
@@ -161,7 +161,7 @@
         interpolate-size: allow-keywords;
     }
 
-    .evolutio-mobile-nav-toggle:checked ~ .evolutio-mobile-nav {
+    .evolutio-mobile-nav-toggle:checked~.evolutio-mobile-nav {
         max-height: fit-content;
     }
 }
