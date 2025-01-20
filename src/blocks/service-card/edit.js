@@ -1,7 +1,8 @@
 //@ts-check
 
-import { useBlockProps } from '@wordpress/block-editor';
-import { TextControl, TextareaControl } from '@wordpress/components';
+import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
+import { PanelBody, PanelRow, TextareaControl, TextControl } from '@wordpress/components';
+import { Fragment } from 'react/jsx-runtime';
 
 /**
  * @argument {import('@wordpress/blocks').BlockEditProps<
@@ -55,19 +56,48 @@ export default function Edit({ attributes, setAttributes, isSelected }) {
         setAttributes({ description: value })
     }
 
+    /**
+     * @param {string} value The new service url
+     */
+    const updateUrl = (value) => {
+        setAttributes({ url: value })
+    }
+
     return (
-        <div {...useBlockProps({ style: customStyle, className: "evolutio-service-card" })}>
-            <img className="evolutio-service-card__image" src={backgroundImage} style={{ backgroundSize }} />
-            <div className="evolutio-service-card__desktop-content">
-                <DesktopServiceName desktopName={desktopName} updateName={updateDesktopName} isSelected={isSelected} />
-                <ServiceDescription description={description} updateDescription={updateDescription} isSelected={isSelected} />
-                <ReadMoreLink url={url} />
+        <Fragment>
+            <InspectorControls>
+                <PanelBody title="Text Settings" initialOpen>
+                    <PanelRow>
+                        <TextControl
+                            label="Mobile name"
+                            value={mobileName}
+                            onChange={updateMobileName}
+                            __nextHasNoMarginBottom
+                        />
+                    </PanelRow>
+                    <PanelRow>
+                        <TextControl
+                            label="Link URL"
+                            value={url}
+                            onChange={updateUrl}
+                            __nextHasNoMarginBottom
+                        />
+                    </PanelRow>
+                </PanelBody>
+            </InspectorControls>
+            <div {...useBlockProps({ style: customStyle, className: "evolutio-service-card" })}>
+                <img className="evolutio-service-card__image" src={backgroundImage} style={{ backgroundSize }} />
+                <div className="evolutio-service-card__desktop-content">
+                    <DesktopServiceName desktopName={desktopName} updateName={updateDesktopName} isSelected={isSelected} />
+                    <ServiceDescription description={description} updateDescription={updateDescription} isSelected={isSelected} />
+                    <ReadMoreLink url={url} />
+                </div>
+                <div className="evolutio-service-card__mobile-content">
+                    <MobileServiceName mobileName={mobileName || desktopName} updateName={updateMobileName} isSelected={isSelected} />
+                    <ReadMoreLink url={url} mobileVersion />
+                </div>
             </div>
-            <div className="evolutio-service-card__mobile-content">
-                <MobileServiceName mobileName={mobileName || desktopName} updateName={updateMobileName} isSelected={isSelected} />
-                <ReadMoreLink url={url} mobileVersion />
-            </div>
-        </div>
+        </Fragment>
     )
 }
 
