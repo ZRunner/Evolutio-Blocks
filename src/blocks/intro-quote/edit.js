@@ -1,7 +1,7 @@
 //@ts-check
 
 import { useBlockProps, RichText, InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, PanelRow, TextControl, TextareaControl } from '@wordpress/components';
+import { PanelBody, PanelRow, TextControl } from '@wordpress/components';
 import { Fragment } from 'react/jsx-runtime';
 
 /**
