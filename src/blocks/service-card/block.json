@@ -8,9 +8,11 @@
 	"icon": "format-aside",
 	"description": "A card describing one of your services",
 	"example": {
-		"desktopName": "For a company",
-		"mobileName": "A company",
-		"description": "We offer a wide range of services to help you grow your business"
+		"attributes": {
+			"desktopName": "For a company",
+			"mobileName": "A company",
+			"description": "We offer a wide range of services to help you grow your business"
+		}
 	},
 	"attributes": {
 		"desktopName": {

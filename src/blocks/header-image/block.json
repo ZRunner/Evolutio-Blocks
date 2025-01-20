@@ -7,7 +7,6 @@
 	"category": "media",
 	"icon": "cover-image",
 	"description": "An image with a colored gradient",
-	"example": {},
 	"attributes": {
 		"minHeight": {
 			"type": "string",
