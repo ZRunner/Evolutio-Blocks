@@ -1,0 +1,38 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "evolutio/services",
+	"version": "0.1.0",
+	"title": "Services",
+	"category": "design",
+	"icon": "excerpt-view",
+	"description": "A container for service cards",
+	"allowedBlocks": [
+		"evolutio/service-card"
+	],
+	"example": {
+		"attributes": {
+			"description": "We offer a wide range of services to help you grow your business."
+		}
+	},
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": "full"
+		},
+		"description": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"align": [
+			"full"
+		],
+		"html": false
+	},
+	"textdomain": "services",
+	"style": "evolutio-services-style",
+	"editorScript": "file:./index.js",
+	"render": "file:./render.php"
+}

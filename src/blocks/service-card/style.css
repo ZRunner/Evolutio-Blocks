@@ -4,6 +4,8 @@
 }
 
 .evolutio-service-card {
+    display: flex;
+    flex-direction: column;
     border-radius: 25px;
     overflow: hidden;
     background-color: white;
@@ -11,8 +13,7 @@
 }
 
 .evolutio-service-card__image {
-    min-height: 3rem;
-    max-height: 340px;
+    height: 240px;
     width: 100%;
     background-position: center;
     object-fit: cover;
@@ -49,8 +50,10 @@
 }
 
 .evolutio-service-card__readmore {
+    flex: 1;
     display: flex;
-    margin: 2.5rem 0 2rem;
+    align-items: end;
+    margin: 2rem 0 1.5rem;
     column-gap: 0.25rem;
     font-size: 1rem;
     font-weight: 600;
@@ -68,13 +71,23 @@
     padding: 0.5rem 1.5rem;
 }
 
+.evolutio-service-card__desktop-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
 .evolutio-service-card__mobile-content {
     display: none;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 782px) {
     .evolutio-service-card__desktop-content {
         display: none;
+    }
+
+    .evolutio-service-card__image {
+        height: 340px;
     }
 
     .evolutio-service-card__name {
@@ -82,6 +95,7 @@
     }
 
     .evolutio-service-card__readmore {
+        flex: 0;
         margin: 0;
     }
 
