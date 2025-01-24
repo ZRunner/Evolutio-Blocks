@@ -1,0 +1,47 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "evolutio/customer-reviews",
+    "title": "Customer reviews",
+    "category": "text",
+    "description": "A carousel presenting customer reviews",
+    "icon": "slides",
+    "example": {
+        "attributes": {
+            "description": "Our customers are the best placed to describe the quality of our work.",
+            "reviews": [
+                {
+                    "author": "John Doe",
+                    "content": "I was very satisfied with the service I received."
+                },
+                {
+                    "author": "Jane Smith",
+                    "content": "I would recommend this company to anyone."
+                }
+            ]
+        }
+    },
+    "attributes": {
+        "align": {
+            "type": "string",
+            "default": "full"
+        },
+        "reviews": {
+            "type": "array",
+            "default": []
+        },
+        "description": {
+            "type": "string",
+            "default": ""
+        }
+    },
+    "supports": {
+        "align": [
+            "full"
+        ],
+        "html": false
+    },
+    "style": "evolutio-customer-reviews-style",
+    "editorScript": "file:./index.js",
+    "viewScript": "file:./view.js"
+}
