@@ -13,6 +13,10 @@
         "contactUrl": {
             "type": "string",
             "default": "/contact"
+        },
+        "brandImage": {
+            "type": "object",
+            "default": null
         }
     },
     "supports": {

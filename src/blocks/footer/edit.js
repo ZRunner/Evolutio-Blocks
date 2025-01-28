@@ -1,45 +1,21 @@
 //@ts-check
 
-import { useBlockProps } from '@wordpress/block-editor';
+import { MediaUpload, MediaUploadCheck, useBlockProps } from '@wordpress/block-editor';
 import { TextControl, SelectControl, PanelBody, PanelRow, Button } from '@wordpress/components';
 import { InspectorControls } from '@wordpress/block-editor';
 import { Fragment } from 'react/jsx-runtime';
-import { useEffect, useState } from 'react';
-
-/**
- * @type {{
- *   data: typeof import('@wordpress/data'),
- * }}
- */
-// @ts-ignore
-const wp = window.wp;
 
 /**
  * @argument {import('@wordpress/blocks').BlockEditProps<
  *  {
  *      links: {label: string, icon: "hammer" | "linkedin", url: string}[],
- *      contactUrl: string
+ *      contactUrl: string,
+ *      brandImage: {id: number, url: string,} | null,
  *  }>} props
  * @return {import('react').ReactElement} Element to render.
  */
 export default function Edit({ attributes, setAttributes }) {
-    const { links, contactUrl } = attributes;
-    const [siteIconUrl, setSiteIconUrl] = useState('');
-
-    /** @type {string | undefined} */
-    const siteIconId = wp.data.select('core').getEntityRecord('root', 'site')?.site_icon;
-
-    useEffect(() => {
-        if (!siteIconId) return;
-        const unsubscribe = wp.data.subscribe(() => {
-            const media = wp.data.select('core').getMedia(siteIconId);
-            if (media) {
-                setSiteIconUrl(media.source_url);
-                unsubscribe(); // Stop subscribing once data is fetched.
-            }
-        });
-    }, [siteIconId]);
-
+    const { links, contactUrl, brandImage } = attributes;
 
     const addLink = () => {
         setAttributes({ links: [...links, { label: '', icon: 'hammer', url: '' }] });
@@ -77,6 +53,17 @@ export default function Edit({ attributes, setAttributes }) {
         setAttributes({ contactUrl: value });
     }
 
+    /**
+     * @param {{id: number} & {[k: string]: unknown}} image The new contact URL
+     */
+    const updateBrandImage = (image) => {
+        if (!image.url || typeof image.url !== "string") {
+            console.error("Invalid image URL", image);
+            return;
+        }
+        setAttributes({ brandImage: { id: image.id, url: image.url } });
+    };
+
     return (
         <Fragment>
             <InspectorControls>
@@ -93,11 +80,13 @@ export default function Edit({ attributes, setAttributes }) {
                                 label={`Label ${index + 1}`}
                                 value={link.label}
                                 onChange={(value) => updateLink(index, 'label', value)}
+                                __nextHasNoMarginBottom
                             />
                             <TextControl
                                 label={`URL ${index + 1}`}
                                 value={link.url}
                                 onChange={(value) => updateLink(index, 'url', value)}
+                                __nextHasNoMarginBottom
                             />
                             <PanelRow>
                                 <SelectControl
@@ -108,6 +97,7 @@ export default function Edit({ attributes, setAttributes }) {
                                         { label: 'LinkedIn', value: 'linkedin' },
                                     ]}
                                     onChange={(value) => updateLink(index, 'icon', value)}
+                                    __nextHasNoMarginBottom
                                 />
                                 <Button isDestructive onClick={() => removeLink(index)}>
                                     Remove
@@ -120,7 +110,24 @@ export default function Edit({ attributes, setAttributes }) {
                             label="Contact page URL"
                             value={contactUrl}
                             onChange={updateContactUrl}
+                            __nextHasNoMarginBottom
                         />
+                    </PanelRow>
+                    <PanelRow>
+                        <label>Custom Logo</label>
+                        < // @ts-ignore
+                            MediaUploadCheck>
+                            <MediaUpload
+                                onSelect={updateBrandImage}
+                                allowedTypes={['image']}
+                                value={brandImage?.id}
+                                render={({ open }) => (
+                                    <Button onClick={open}>
+                                        {brandImage ? 'Change Image' : 'Upload Image'}
+                                    </Button>
+                                )}
+                            />
+                        </MediaUploadCheck>
                     </PanelRow>
                 </PanelBody>
             </InspectorControls>
@@ -139,7 +146,7 @@ export default function Edit({ attributes, setAttributes }) {
                 <div className="evolutio-footer__bottom">
                     <div className="evolutio-footer__flexrow">
                         <span className="evolutio-footer__brandcontainer">
-                            <img src={siteIconUrl} alt="Evolutio Avocats Logo" width="50" height="50" />
+                            <img src={brandImage?.url} alt="Evolutio Avocats Logo" width="60" height="auto" />
                             <span>Evolutio</span>
                         </span>
                         <div className="evolutio-footer__lefthalf">

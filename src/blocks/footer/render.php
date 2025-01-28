@@ -1,7 +1,7 @@
 <?php
 $links = $attributes['links'] ?? [];
 $contactUrl = $attributes['contactUrl'] ?? '';
-$siteIconUrl = get_site_icon_url(50);
+$brandImageUrl = $attributes['brandImage']['url'] ?? '';
 
 $containerAttributes = get_block_wrapper_attributes([
     'class' => 'evolutio-footer',
@@ -71,7 +71,7 @@ if (! function_exists('evolutio_render_legal_links')) {
     <div class="evolutio-footer__bottom">
         <div class="evolutio-footer__flexrow">
             <span class="evolutio-footer__brandcontainer">
-                <img src="<?php echo esc_url($siteIconUrl); ?>" alt="Evolutio Avocats Logo" width="50" height="50" />
+                <img src="<?php echo esc_url($brandImageUrl); ?>" alt="Evolutio Avocats Logo" width="60" height="auto" />
                 <span>Evolutio</span>
             </span>
             <div class="evolutio-footer__lefthalf">
