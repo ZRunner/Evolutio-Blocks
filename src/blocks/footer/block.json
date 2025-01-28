@@ -1,0 +1,25 @@
+{
+    "apiVersion": 2,
+    "name": "evolutio/footer",
+    "title": "Footer",
+    "category": "design",
+    "description": "A footer with external links and a contact button.",
+    "icon": "menu",
+    "attributes": {
+        "links": {
+            "type": "array",
+            "default": []
+        },
+        "contactUrl": {
+            "type": "string",
+            "default": "/contact"
+        }
+    },
+    "supports": {
+        "align": true,
+        "html": false
+    },
+    "style": "evolutio-footer-style",
+    "editorScript": "file:./index.js",
+    "render": "file:./render.php"
+}

@@ -1,0 +1,215 @@
+//@ts-check
+
+import { useBlockProps } from '@wordpress/block-editor';
+import { TextControl, SelectControl, PanelBody, PanelRow, Button } from '@wordpress/components';
+import { InspectorControls } from '@wordpress/block-editor';
+import { Fragment } from 'react/jsx-runtime';
+import { useEffect, useState } from 'react';
+
+/**
+ * @type {{
+ *   data: typeof import('@wordpress/data'),
+ * }}
+ */
+// @ts-ignore
+const wp = window.wp;
+
+/**
+ * @argument {import('@wordpress/blocks').BlockEditProps<
+ *  {
+ *      links: {label: string, icon: "hammer" | "linkedin", url: string}[],
+ *      contactUrl: string
+ *  }>} props
+ * @return {import('react').ReactElement} Element to render.
+ */
+export default function Edit({ attributes, setAttributes }) {
+    const { links, contactUrl } = attributes;
+    const [siteIconUrl, setSiteIconUrl] = useState('');
+
+    /** @type {string | undefined} */
+    const siteIconId = wp.data.select('core').getEntityRecord('root', 'site')?.site_icon;
+
+    useEffect(() => {
+        if (!siteIconId) return;
+        const unsubscribe = wp.data.subscribe(() => {
+            const media = wp.data.select('core').getMedia(siteIconId);
+            if (media) {
+                setSiteIconUrl(media.source_url);
+                unsubscribe(); // Stop subscribing once data is fetched.
+            }
+        });
+    }, [siteIconId]);
+
+
+    const addLink = () => {
+        setAttributes({ links: [...links, { label: '', icon: 'hammer', url: '' }] });
+    };
+
+    /**
+     * @param {number} index The index of the link to update.
+     * @param {"label" | "url" | "icon" } key Which property to update.
+     * @param {string} value The new value.
+     */
+    const updateLink = (index, key, value) => {
+        const updatedLinks = [...links];
+        if (key === "icon") {
+            if (value === "linkedin" || value === "hammer") {
+                updatedLinks[index][key] = value;
+            }
+        } else {
+            updatedLinks[index][key] = value;
+        }
+        setAttributes({ links: updatedLinks });
+    };
+
+    /**
+     * @param {number} index The index of the link to remove.
+     */
+    const removeLink = (index) => {
+        const updatedLinks = links.filter((_, i) => i !== index);
+        setAttributes({ links: updatedLinks });
+    };
+
+    /**
+     * @param {string} value The new contact URL
+     */
+    const updateContactUrl = (value) => {
+        setAttributes({ contactUrl: value });
+    }
+
+    return (
+        <Fragment>
+            <InspectorControls>
+                <PanelBody title="Footer Settings" initialOpen>
+                    <PanelRow>
+                        <Button variant="primary" onClick={addLink}>
+                            Add Link
+                        </Button>
+                    </PanelRow>
+                    {links.map((link, index) => (
+                        <Fragment key={index}>
+                            <hr />
+                            <TextControl
+                                label={`Label ${index + 1}`}
+                                value={link.label}
+                                onChange={(value) => updateLink(index, 'label', value)}
+                            />
+                            <TextControl
+                                label={`URL ${index + 1}`}
+                                value={link.url}
+                                onChange={(value) => updateLink(index, 'url', value)}
+                            />
+                            <PanelRow>
+                                <SelectControl
+                                    label={`Icon ${index + 1}`}
+                                    value={link.icon}
+                                    options={[
+                                        { label: 'Hammer', value: 'hammer' },
+                                        { label: 'LinkedIn', value: 'linkedin' },
+                                    ]}
+                                    onChange={(value) => updateLink(index, 'icon', value)}
+                                />
+                                <Button isDestructive onClick={() => removeLink(index)}>
+                                    Remove
+                                </Button>
+                            </PanelRow>
+                        </Fragment>
+                    ))}
+                    <PanelRow>
+                        <TextControl
+                            label="Contact page URL"
+                            value={contactUrl}
+                            onChange={updateContactUrl}
+                        />
+                    </PanelRow>
+                </PanelBody>
+            </InspectorControls>
+            <div {...useBlockProps({ className: "evolutio-footer" })}>
+                <div className="evolutio-footer__top">
+                    <div className="evolutio-footer__contactbox">
+                        <div className="evolutio-footer__contacttext" >Prenez directement rendez-vous !</div>
+                        <span title={contactUrl} className="evolutio-footer__contactbutton">
+                            <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fillRule="evenodd" clipRule="evenodd" d="M12.3744 13.8375C17.6931 19.1548 18.8997 13.0033 22.2862 16.3874C25.5511 19.6514 27.4275 20.3053 23.291 24.4406C22.7729 24.857 19.4808 29.8667 7.9115 18.3006C-3.65927 6.73302 1.34748 3.43761 1.76399 2.91962C5.91052 -1.22719 6.55318 0.660193 9.81802 3.92412C13.2045 7.30968 7.05557 8.52023 12.3744 13.8375Z" fill="#F9F8F9" />
+                            </svg>
+                            Prenez rendez-vous
+                        </span>
+                    </div>
+                </div>
+                <div className="evolutio-footer__bottom">
+                    <div className="evolutio-footer__flexrow">
+                        <span className="evolutio-footer__brandcontainer">
+                            <img src={siteIconUrl} alt="Evolutio Avocats Logo" width="50" height="50" />
+                            <span>Evolutio</span>
+                        </span>
+                        <div className="evolutio-footer__lefthalf">
+                            <div className="evolutio-footer__navigation">
+                                <div>Accueil</div>
+                                <div>Notre philosophie</div>
+                                <div>Nos services</div>
+                                <div>Notre équipe</div>
+                                <div>Notre blog</div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div className="evolutio-footer__righthalf">
+                            <div className="evolutio-footer__outerlinks">
+                                {links.map(link => (
+                                    <ExternalLink key={link.url} link={link} />
+                                ))}
+                            </div>
+                            <LegalLinks className="evolutio-footer__desktop" />
+                        </div>
+                    </div>
+                    <div className="evolutio-footer__mobile-legals">
+                        <LegalLinks />
+                    </div>
+                </div>
+            </div>
+        </Fragment>
+    );
+}
+
+/**
+ * @param {{ link: { label: string, url: string, icon: "hammer" | "linkedin" } }} props
+ */
+function ExternalLink({ link }) {
+    return (
+        <div className="evolutio-footer__outerlink" title={link.url}>
+            {link.icon === "hammer" ? <HammerIcon /> : <LinkedInIcon />}
+            {link.label}
+        </div>
+    );
+}
+
+function HammerIcon() {
+    return (
+        <svg aria-hidden="true" data-prefix="fa" data-icon="gavel" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+            <path fill="currentColor" d="M504.971 199.362l-22.627-22.627c-9.373-9.373-24.569-9.373-33.941 0l-5.657 5.657L329.608 69.255l5.657-5.657c9.373-9.373 9.373-24.569 0-33.941L312.638 7.029c-9.373-9.373-24.569-9.373-33.941 0L154.246 131.48c-9.373 9.373-9.373 24.569 0 33.941l22.627 22.627c9.373 9.373 24.569 9.373 33.941 0l5.657-5.657 39.598 39.598-81.04 81.04-5.657-5.657c-12.497-12.497-32.758-12.497-45.255 0L9.373 412.118c-12.497 12.497-12.497 32.758 0 45.255l45.255 45.255c12.497 12.497 32.758 12.497 45.255 0l114.745-114.745c12.497-12.497 12.497-32.758 0-45.255l-5.657-5.657 81.04-81.04 39.598 39.598-5.657 5.657c-9.373 9.373-9.373 24.569 0 33.941l22.627 22.627c9.373 9.373 24.569 9.373 33.941 0l124.451-124.451c9.372-9.372 9.372-24.568 0-33.941z" />
+        </svg>
+    )
+}
+
+function LinkedInIcon() {
+    return (
+        <svg aria-hidden="true" data-prefix="fab" data-icon="linkedin-in" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
+            <path fill="currentColor" d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z" />
+        </svg>
+    )
+}
+
+/**
+ * @param {{ className?: string }} props
+ */
+function LegalLinks({ className }) {
+    return (
+        <Fragment>
+            <div className={"evolutio-footer__legal " + (className ?? "")}>
+                Mentions légales et politique de confidentialité
+            </div>
+            <div className={"evolutio-footer__legal " + (className ?? "")}>
+                Evolutio Avocats - 2024
+            </div>
+        </Fragment>
+    )
+}
