@@ -84,7 +84,7 @@ export default function Edit({ attributes, setAttributes }) {
     return (
         <Fragment>
             <InspectorControls>
-                <PanelBody title="Appbar Settings" initialOpen={true}>
+                <PanelBody title="Appbar Settings" initialOpen>
                     <PanelRow>
                         <Button variant="primary" onClick={addLink}>
                             Add Link
@@ -164,6 +164,6 @@ export default function Edit({ attributes, setAttributes }) {
                     </ul>
                 </nav>
             </div>
-        </Fragment >
+        </Fragment>
     );
 }
