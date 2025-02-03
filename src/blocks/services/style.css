@@ -48,7 +48,7 @@
     max-width: 430px;
 }
 
-@media (min-width: 1400px) {
+@media (min-width: 1600px) {
     .evolutio-services .evolutio-service-card {
         width: calc((95% - 4rem) / 3);
     }
