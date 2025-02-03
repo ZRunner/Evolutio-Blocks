@@ -1,5 +1,5 @@
 //@ts-check
-import { useBlockProps } from '@wordpress/block-editor';
+import { RichText, useBlockProps } from '@wordpress/block-editor';
 import { Fragment } from 'react/jsx-runtime';
 
 /**
@@ -23,7 +23,9 @@ export default function Save({ attributes }) {
             <div {...useBlockProps.save({ className: "evolutio-customer-reviews" })}>
                 <h3 className="evolutio-customer-reviews__desktop-title">Ce que vous pensez de nous</h3>
                 <h3 className="evolutio-customer-reviews__mobile-title">Vos avis</h3>
-                <p className="evolutio-customer-reviews__description">{description}</p>
+                <p className="evolutio-customer-reviews__description">
+                    <RichText.Content value={description} />
+                </p>
                 <div className="swiper">
                     <div className="swiper-wrapper">
                         {reviews.map((review, index) => (

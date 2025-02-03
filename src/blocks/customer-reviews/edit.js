@@ -17,7 +17,6 @@ const wp = window.wp;
 
 const DISABLED_FORMATS = [
     "core/image",
-    "core/italic",
     "core/language",
 ]
 
