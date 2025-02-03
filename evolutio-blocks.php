@@ -20,6 +20,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 use Evolutio\Templates\HomePageTemplateUtil;
 use Evolutio\Parts\HeaderPatternUtil;
+use Evolutio\Parts\FooterPatternUtil;
 
 // Exit if accessed directly
 defined('ABSPATH') || exit();
@@ -66,5 +67,6 @@ add_action('init', __NAMESPACE__ . '\\evolutio_register_templates');
 function evolutio_register_patterns()
 {
 	HeaderPatternUtil::RegisterPattern();
+	FooterPatternUtil::RegisterPattern();
 }
 add_action('init', __NAMESPACE__ . '\\evolutio_register_patterns');
