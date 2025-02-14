@@ -18,7 +18,6 @@ namespace Evolutio;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-use Evolutio\Templates\HomePageTemplateUtil;
 use Evolutio\Parts\HeaderPatternUtil;
 use Evolutio\Parts\FooterPatternUtil;
 
@@ -57,12 +56,6 @@ function evolutio_register_blocks()
 	}
 }
 add_action('init', __NAMESPACE__ . '\\evolutio_register_blocks');
-
-function evolutio_register_templates()
-{
-	HomePageTemplateUtil::RegisterTemplate();
-}
-add_action('init', __NAMESPACE__ . '\\evolutio_register_templates');
 
 function evolutio_register_patterns()
 {
