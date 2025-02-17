@@ -20,6 +20,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 use Evolutio\Parts\HeaderPatternUtil;
 use Evolutio\Parts\FooterPatternUtil;
+use Evolutio\PostTypes\CustomerReviewPostUtil;
 
 // Exit if accessed directly
 defined('ABSPATH') || exit();
@@ -61,5 +62,12 @@ function evolutio_register_patterns()
 {
 	HeaderPatternUtil::RegisterPattern();
 	FooterPatternUtil::RegisterPattern();
+	CustomerReviewPostUtil::RegisterPostType();
 }
 add_action('init', __NAMESPACE__ . '\\evolutio_register_patterns');
+
+function evolutio_register_post_types()
+{
+	CustomerReviewPostUtil::RegisterPostType();
+}
+add_action('init', __NAMESPACE__ . '\\evolutio_register_post_types');

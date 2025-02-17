@@ -8,27 +8,13 @@
     "icon": "slides",
     "example": {
         "attributes": {
-            "description": "Our customers are the best placed to describe the quality of our work.",
-            "reviews": [
-                {
-                    "author": "John Doe",
-                    "content": "I was very satisfied with the service I received."
-                },
-                {
-                    "author": "Jane Smith",
-                    "content": "I would recommend this company to anyone."
-                }
-            ]
+            "description": "Our customers are the best placed to describe the quality of our work."
         }
     },
     "attributes": {
         "align": {
             "type": "string",
             "default": "full"
-        },
-        "reviews": {
-            "type": "array",
-            "default": []
         },
         "description": {
             "type": "string",
@@ -43,5 +29,6 @@
     },
     "style": "evolutio-customer-reviews-style",
     "editorScript": "file:./index.js",
-    "viewScript": "file:./view.js"
+    "viewScript": "file:./view.js",
+    "render": "file:./render.php"
 }
