@@ -80,7 +80,7 @@ export default function Edit({ attributes, setAttributes }) {
     return (
         <Fragment>
             <InspectorControls>
-                <PanelBody title="Appbar Settings" initialOpen={true}>
+                <PanelBody title="Reviews list" initialOpen={true}>
                     <PanelRow>
                         <Button variant="primary" onClick={addReview}>
                             Add Review
@@ -105,7 +105,7 @@ export default function Edit({ attributes, setAttributes }) {
                                 label={`Content ${index + 1}`}
                                 value={link.content}
                                 onChange={(value) => updateReview(index, "content", value)}
-                                maxLength={600}
+                                maxLength={700}
                             />
                             <Button isDestructive onClick={() => removeReview(index)}>
                                 Remove
