@@ -18,9 +18,10 @@ namespace Evolutio;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-use Evolutio\Parts\HeaderPatternUtil;
 use Evolutio\Parts\FooterPatternUtil;
+use Evolutio\Parts\HeaderPatternUtil;
 use Evolutio\PostTypes\CustomerReviewPostUtil;
+use Evolutio\PostTypes\ServicesPostUtil;
 
 // Exit if accessed directly
 defined('ABSPATH') || exit();
@@ -32,7 +33,7 @@ defined('ABSPATH') || exit();
  *
  * @see https://developer.wordpress.org/reference/functions/register_block_type/
  */
-function evolutio_register_blocks()
+function evolutio_register_blocks(): void
 {
 	$plugin_dir = __DIR__;
 	$build_dir = $plugin_dir . '/build/blocks';
@@ -56,18 +57,22 @@ function evolutio_register_blocks()
 		}
 	}
 }
+
 add_action('init', __NAMESPACE__ . '\\evolutio_register_blocks');
 
-function evolutio_register_patterns()
+function evolutio_register_patterns(): void
 {
 	HeaderPatternUtil::RegisterPattern();
 	FooterPatternUtil::RegisterPattern();
 	CustomerReviewPostUtil::RegisterPostType();
 }
+
 add_action('init', __NAMESPACE__ . '\\evolutio_register_patterns');
 
-function evolutio_register_post_types()
+function evolutio_register_post_types(): void
 {
 	CustomerReviewPostUtil::RegisterPostType();
+	ServicesPostUtil::RegisterPostType();
 }
+
 add_action('init', __NAMESPACE__ . '\\evolutio_register_post_types');
