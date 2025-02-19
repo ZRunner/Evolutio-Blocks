@@ -16,6 +16,10 @@ abstract class CustomerReviewPostUtil
 				'name' => 'Reviews',
 				'singular_name' => 'Review',
 				'add_new_item' => 'Add a review',
+				'edit_item' => 'Edit review',
+				'new_item' => 'New review',
+				'view_item' => 'View review',
+				'search_items' => 'Search reviews',
 				'not_found' => 'No review found',
 				'not_found_in_trash' => 'No review found in trash'
 			),
@@ -82,6 +86,14 @@ abstract class CustomerReviewPostUtil
 	 */
 	public static function Save(int $post_id)
 	{
+		// Security checks
+		if (!isset($_POST['review_meta_nonce']) || !wp_verify_nonce($_POST['review_meta_nonce'], 'save_review_meta')) {
+			return;
+		}
+		// Ensure the user has permission to edit
+		if (!current_user_can('edit_post', $post_id)) {
+			return;
+		}
 		if (!isset($_POST)) {
 			echo 'No data to save';
 			return;
@@ -103,7 +115,9 @@ abstract class CustomerReviewPostUtil
 	{
 		$job_title = get_post_meta($post->ID, 'review_job_title', true);
 		$review_text = get_post_meta($post->ID, 'review_text', true);
-		?>
+
+		wp_nonce_field('save_review_meta', 'review_meta_nonce');
+?>
 		<p>
 			<label for="review_job_title">Job Title</label><br>
 			<input type="text" id="review_job_title" name="review_job_title" value="<?php echo esc_attr($job_title); ?>" size="30" />
@@ -112,6 +126,6 @@ abstract class CustomerReviewPostUtil
 			<label for="review_text">Review Text</label><br>
 			<textarea id="review_text" name="review_text" rows="4" cols="50"><?php echo esc_textarea($review_text); ?></textarea>
 		</p>
-		<?php
+<?php
 	}
 }

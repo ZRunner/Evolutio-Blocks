@@ -7,6 +7,16 @@ import Swiper from 'swiper';
 import { useEntityRecords } from '@wordpress/core-data';
 import { useEffect } from 'react';
 
+/** @typedef {{
+ *  id: number,
+ *  review_job_title: string,
+ *  review_text: string,
+ *  title: {
+ *   rendered: string,
+ *  }
+ *  modified_gmt: string,
+ * }} Review */
+
 /**
  * @type {{
 *   data: typeof import('@wordpress/data'),
@@ -33,6 +43,7 @@ export default function Edit({ attributes, setAttributes }) {
     // Fetch reviews from the "review" custom post type
     /** @type {Review[]} */
     const reviews = useEntityRecords('postType', 'review', { per_page: -1, status: 'publish' }).records ?? [];
+    reviews.sort((a, b) => a.modified_gmt.localeCompare(b.modified_gmt));
 
     /** @type {{name: string}[]} */
     const defaultFormats = wp.data.select('core/rich-text').getFormatTypes();
@@ -60,8 +71,6 @@ export default function Edit({ attributes, setAttributes }) {
 
         return () => swiperInstance.destroy(true, true);
     }, [reviews]);
-
-    console.debug(reviews)
 
     return (
         <Fragment>
@@ -105,29 +114,4 @@ export default function Edit({ attributes, setAttributes }) {
             </div>
         </Fragment>
     );
-}
-
-/** @typedef {{
- *  id: number,
- *  review_job_title: string,
- *  review_text: string,
- *  title: {
- *   rendered: string,
- *  }
- * }} Review */
-
-/**
- * @param {unknown} post 
- * @return {post is Review}
- */
-function isReview(post) {
-    return (
-        typeof post === "object"
-        && "id" in post
-        && typeof post.id === "number"
-        && "review_job_title" in post
-        && typeof post.review_job_title === "string"
-        && "review_text" in post
-        && typeof post.review_text === "string"
-    )
 }
