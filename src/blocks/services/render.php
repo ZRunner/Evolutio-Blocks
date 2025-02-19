@@ -29,7 +29,7 @@ if (!function_exists('evolutio_render_service_card')) {
 		$featured_image_src = '';
 
 		if (has_post_thumbnail($service)) {
-			$featured_image_src = esc_url(get_the_post_thumbnail_url($service, 'medium'));
+			$featured_image_src = esc_url(get_the_post_thumbnail_url($service, 'large'));
 		}
 
 		ob_start();
