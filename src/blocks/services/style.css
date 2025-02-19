@@ -1,5 +1,6 @@
 :root {
     --evo-services-color-primary: #092747;
+    --evo-services-color-accent: #F5A524;
 }
 
 .evolutio-services {
@@ -33,7 +34,6 @@
     line-height: 1.4rem;
 }
 
-.evolutio-services .block-editor-block-list__layout,
 .evolutio-services__innercomponents {
     margin-top: 4rem;
     display: flex;
@@ -41,17 +41,6 @@
     flex-wrap: wrap;
     justify-content: space-around;
     gap: 2rem;
-}
-
-.evolutio-services .evolutio-service-card {
-    width: calc((95% - 2rem) / 2);
-    max-width: 430px;
-}
-
-@media (min-width: 1600px) {
-    .evolutio-services .evolutio-service-card {
-        width: calc((95% - 4rem) / 3);
-    }
 }
 
 @media (max-width: 782px) {
@@ -68,13 +57,128 @@
         display: none;
     }
 
-    .evolutio-services .block-editor-block-list__layout,
     .evolutio-services__innercomponents {
         margin-top: 2rem;
     }
+}
 
-    .evolutio-services .evolutio-service-card {
+/* ----- SERVICE CARD ----- */
+
+
+.evolutio-service-card {
+    display: flex;
+    flex-direction: column;
+    width: calc((95% - 2rem) / 2);
+    max-width: 430px;
+    border-radius: 25px;
+    overflow: hidden;
+    background-color: white;
+    color: var(--evo-services-color-primary);
+}
+
+.evolutio-service-card__image {
+    height: 240px;
+    width: 100%;
+    background-position: center;
+    object-fit: cover;
+}
+
+.evolutio-service-card__name input.components-text-control__input {
+    border: none;
+    padding: 0;
+    font-family: Raleway;
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+.evolutio-service-card__description textarea.components-textarea-control__input {
+    border: none;
+    padding: 0;
+    font-family: Raleway;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 140%;
+}
+
+.evolutio-service-card__name {
+    margin-top: 1rem;
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+.evolutio-service-card__description {
+    margin-top: 1rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 140%;
+}
+
+.evolutio-service-card__readmore {
+    flex: 1;
+    display: flex;
+    align-items: end;
+    margin: 2rem 0 1.5rem;
+    column-gap: 0.25rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--evo-services-color-accent);
+    text-decoration: none;
+}
+
+.evolutio-service-card__readmore:hover {
+    color: #e4941f;
+    text-decoration: underline;
+}
+
+.evolutio-service-card__desktop-content,
+.evolutio-service-card__mobile-content {
+    padding: 0.5rem 1.5rem;
+}
+
+.evolutio-service-card__desktop-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.evolutio-service-card__mobile-content {
+    display: none;
+}
+
+@media (min-width: 1600px) {
+    .evolutio-service-card {
+        width: calc((95% - 4rem) / 3);
+    }
+}
+
+@media (max-width: 782px) {
+    .evolutio-service-card {
         width: 95%;
         max-width: 95%;
+    }
+
+    .evolutio-service-card__desktop-content {
+        display: none;
+    }
+
+    .evolutio-service-card__image {
+        height: 50vw;
+    }
+
+    .evolutio-service-card__name {
+        margin-top: 0;
+    }
+
+    .evolutio-service-card__readmore {
+        flex: 0;
+        margin: 0;
+    }
+
+    .evolutio-service-card__mobile-content {
+        display: flex;
+        flex-direction: row;
+        column-gap: 0.25rem;
+        justify-content: space-between;
+        align-items: center;
     }
 }
