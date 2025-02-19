@@ -43,7 +43,6 @@ export default function Edit({ attributes, setAttributes }) {
     // Fetch reviews from the "review" custom post type
     /** @type {Review[]} */
     const reviews = useEntityRecords('postType', 'review', { per_page: -1, status: 'publish' }).records ?? [];
-    reviews.sort((a, b) => a.modified_gmt.localeCompare(b.modified_gmt));
 
     /** @type {{name: string}[]} */
     const defaultFormats = wp.data.select('core/rich-text').getFormatTypes();
