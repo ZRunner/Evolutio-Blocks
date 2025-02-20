@@ -1,8 +1,3 @@
-:root {
-    --evo-customerreviews-color-primary: #092747;
-    --evo-customerreviews-color-accent: #F5A524;
-}
-
 .evolutio-customer-reviews {
     padding: 4rem 12vw;
 }
@@ -11,7 +6,7 @@
     margin: 2.5rem 0;
     font-size: 2.5rem;
     line-height: 130%;
-    color: var(--evo-customerreviews-color-primary);
+    color: var(--wp--preset--color--primary);
 }
 
 .evolutio-customer-reviews__mobile-title {
@@ -52,7 +47,7 @@
     box-sizing: border-box;
     max-width: 100%;
     padding: 1.3rem 3.75rem;
-    color: var(--evo-customerreviews-color-primary);
+    color: var(--wp--preset--color--primary);
 }
 
 @media (max-width: 700px) {
@@ -63,7 +58,7 @@
 }
 
 .evolutio-customer-reviews .swiper-pagination-bullet-active {
-    background-color: var(--evo-customerreviews-color-accent);
+    background-color: var(--wp--preset--color--accent);
 }
 
 .evolutio-customer-review__role {

@@ -1,8 +1,5 @@
 :root {
-    --evo-appbar-color-primary: #092747;
-    --evo-appbar-desktop-floating-bg: #092747BF;
     --evo-appbar-mobile-bg: #E6E6E6;
-    --evo-appbar-color-accent: #F5A524;
 }
 
 .evolutio-appbar-desktop-container {
@@ -16,7 +13,7 @@
 }
 
 .evolutio-appbar-background {
-    background: var(--evo-appbar-color-primary);
+    background: var(--wp--preset--color--primary);
     height: 100%;
     width: 100%;
     position: relative;
@@ -24,7 +21,8 @@
 }
 
 .evolutio-appbar__floating {
-    background: var(--evo-appbar-desktop-floating-bg);
+    /* Fallback to solid color if color-mix isn't supported */
+    background: var(--wp--preset--color--primary);
     border-radius: 35px;
     position: fixed;
     top: 0.8rem;
@@ -38,6 +36,12 @@
     padding: 10px 20px;
     z-index: 1000;
     min-width: 500px;
+}
+
+@supports (background: color-mix(in srgb, black 50%, white)) {
+    .evolutio-appbar__floating {
+        background: color-mix(in srgb, var(--wp--preset--color--primary) 75%, transparent);
+    }
 }
 
 .admin-bar .evolutio-appbar__floating {
@@ -63,12 +67,12 @@
 }
 
 .evolutio-appbar__link:hover {
-    color: var(--evo-appbar-color-accent);
+    color: var(--wp--preset--color--accent);
     text-decoration: underline;
 }
 
 .evolutio-appbar__button {
-    background: var(--evo-appbar-color-accent);
+    background: var(--wp--preset--color--accent);
     color: white;
     border: none;
     border-radius: 25px;
@@ -105,7 +109,7 @@
     align-items: center;
     max-height: 50px;
     font-size: 1.5rem;
-    color: var(--evo-appbar-color-primary);
+    color: var(--wp--preset--color--primary);
     text-decoration: none;
 }
 
@@ -142,7 +146,7 @@
 .evolutio-mobile-nav .evolutio-appbar__link {
     text-decoration: none;
     font-size: 1rem;
-    color: var(--evo-appbar-color-primary);
+    color: var(--wp--preset--color--primary);
 }
 
 .evolutio-mobile-nav .evolutio-appbar__button {

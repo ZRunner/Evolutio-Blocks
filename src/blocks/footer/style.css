@@ -1,12 +1,9 @@
 :root {
-    --evo-footer-color-primary: #092747;
-    --evo-footer-light-bg: #F4EDE5;
-    --evo-footer-color-accent: #F5A524;
     --evo-footer-hover-color: #77b1ee;
 }
 
 .evolutio-footer__top {
-    background-color: var(--evo-footer-light-bg);
+    background-color: var(--wp--preset--color--base-2);
     padding: 0 7vw;
 }
 
@@ -27,14 +24,14 @@
     font-size: 1.125rem;
     font-weight: 500;
     line-height: 3rem;
-    color: var(--evo-footer-color-primary);
+    color: var(--wp--preset--color--contrast);
 }
 
 .evolutio-footer__contactbutton {
     display: flex;
     gap: 0.75rem;
     align-items: center;
-    background: var(--evo-footer-color-accent);
+    background: var(--wp--preset--color--accent);
     color: #F4EDE5;
     border: none;
     border-radius: 25px;
@@ -53,7 +50,7 @@
 .evolutio-footer__bottom {
     padding: 3.5rem 10vw 3rem;
     color: white;
-    background-color: var(--evo-footer-color-primary);
+    background-color: var(--wp--preset--color--primary);
 }
 
 .evolutio-footer__flexrow {
