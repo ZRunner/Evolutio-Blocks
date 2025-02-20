@@ -28,7 +28,6 @@
 
 .evolutio-services__description textarea.components-textarea-control__input {
     padding: 0;
-    font-family: Raleway;
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.4rem;
@@ -86,7 +85,6 @@
 .evolutio-service-card__name input.components-text-control__input {
     border: none;
     padding: 0;
-    font-family: Raleway;
     font-size: 1.25rem;
     font-weight: 500;
 }
@@ -94,7 +92,6 @@
 .evolutio-service-card__description textarea.components-textarea-control__input {
     border: none;
     padding: 0;
-    font-family: Raleway;
     font-size: 1rem;
     font-weight: 400;
     line-height: 140%;
