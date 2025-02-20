@@ -1,6 +1,10 @@
 <?php
 $description = isset($attributes['description']) ? wp_kses_post($attributes['description']) : '';
 
+$containerAttributes = get_block_wrapper_attributes([
+    'class' => 'evolutio-customer-reviews',
+]);
+
 // Fetch all reviews from the "review" custom post type
 $reviews = new WP_Query(array(
     'post_type'      => 'review',
@@ -12,7 +16,7 @@ $reviews = new WP_Query(array(
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-<div class="evolutio-customer-reviews">
+<div <?php echo $containerAttributes ?>>
     <h3 class="evolutio-customer-reviews__desktop-title">Ce que vous pensez de nous</h3>
     <h3 class="evolutio-customer-reviews__mobile-title">Vos avis</h3>
 

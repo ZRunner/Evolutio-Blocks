@@ -3,6 +3,9 @@ $content = $attributes['content'];
 $link = $attributes['link'];
 $linkText = $attributes['linkText'];
 
+$containerAttributes = get_block_wrapper_attributes();
+
+
 if (!function_exists('render_quote_icon')) {
     function render_quote_icon($class_name = '')
     {
@@ -25,7 +28,7 @@ if (!function_exists('render_quote_icon')) {
 }
 
 ?>
-<div>
+<div <?php echo $containerAttributes ?>>
     <div class="evolutio-quote-block">
         <?php echo render_quote_icon('evolutio-quote-svg evolutio-quote-svg-start'); ?>
         <div class="evolutio-quote-content">
