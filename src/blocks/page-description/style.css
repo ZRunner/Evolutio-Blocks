@@ -1,0 +1,21 @@
+.evolutio-pagedescription {
+    padding: 2rem 16vw;
+    text-align: center;
+    font-size: 1.5rem;
+    line-height: 1.6;
+    letter-spacing: 0.02rem;
+}
+
+@media (max-width: 782px) {
+    .evolutio-pagedescription {
+        font-size: 1.15rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .evolutio-pagedescription {
+        padding: 2rem 6vw;
+        text-align: start;
+        font-size: 0.875rem;
+    }
+}

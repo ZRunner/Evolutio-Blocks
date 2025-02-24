@@ -1,0 +1,37 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "evolutio/page-description",
+    "version": "0.1.0",
+    "title": "Page Description",
+    "category": "text",
+    "icon": "text",
+    "description": "A rich text description block.",
+    "example": {
+        "attributes": {
+            "text": "A <b>rich text</b> section that correctly handles background color."
+        }
+    },
+    "attributes": {
+        "align": {
+            "type": "string",
+            "default": "full"
+        },
+        "text": {
+            "type": "string",
+            "default": ""
+        }
+    },
+    "supports": {
+        "align": [
+            "full"
+        ],
+        "color": {
+            "background": true,
+            "text": true
+        },
+        "html": false
+    },
+    "style": "evolutio-page-description-style",
+    "editorScript": "file:./index.js"
+}
