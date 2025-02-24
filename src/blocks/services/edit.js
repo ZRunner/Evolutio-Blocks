@@ -43,8 +43,6 @@ export default function Edit({ attributes, setAttributes, isSelected }) {
 
 	return (
 		<div {...useBlockProps({ className: "evolutio-services" })}>
-			<h3 className="evolutio-services__title">Nos services</h3>
-			<Description description={description} updateDescription={updateDescription} isSelected={isSelected} />
 			<div className="evolutio-services__innercomponents">
 				{services.map((service) => (
 					<ServiceCard key={service.id} {...service} />

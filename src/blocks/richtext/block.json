@@ -1,0 +1,58 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "evolutio/richtext",
+    "version": "0.1.0",
+    "title": "Rich Text",
+    "category": "text",
+    "icon": "text",
+    "description": "A rich text block that correctly handles background color.",
+    "example": {
+        "attributes": {
+            "text": "A <b>rich text</b> section that correctly handles background color."
+        }
+    },
+    "attributes": {
+        "align": {
+            "type": "string",
+            "default": "full"
+        },
+        "text": {
+            "type": "string",
+            "default": ""
+        },
+        "style": {
+            "type": "object",
+            "default": {
+                "spacing": {
+                    "padding": {
+                        "top": "4rem",
+                        "right": "12vw",
+                        "bottom": "4rem",
+                        "left": "12vw"
+                    }
+                }
+            }
+        }
+    },
+    "supports": {
+        "align": [
+            "full"
+        ],
+        "color": {
+            "background": true,
+            "text": true
+        },
+        "spacing": {
+            "padding": true
+        },
+        "typography": {
+            "fontSize": true,
+            "lineHeight": true,
+            "textAlign": true
+        },
+        "html": false
+    },
+    "style": "evolutio-page-description-style",
+    "editorScript": "file:./index.js"
+}
