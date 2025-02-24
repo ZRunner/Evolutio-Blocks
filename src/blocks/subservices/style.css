@@ -1,0 +1,95 @@
+.evolutio-subservices {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding: 1rem 10vw 3rem;
+    justify-content: space-around;
+    background-color: #F4EDE5;
+}
+
+@media (max-width: 782px) {
+    .evolutio-subservices {
+        column-gap: 1rem;
+        row-gap: 1rem;
+        padding: 2rem 2rem;
+    }
+}
+
+/* ----- SERVICE CARD ----- */
+
+
+.evolutio-subservice-card {
+    display: flex;
+    flex-direction: column;
+    width: 17rem;
+    box-sizing: border-box;
+    border-radius: 25px;
+    overflow: hidden;
+    background-color: white;
+    padding: 1rem;
+    color: var(--wp--preset--color--primary);
+}
+
+.evolutio-subservice-card__name {
+    min-height: 5.8rem;
+    margin-bottom: 0.25rem;
+    align-content: center;
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+.evolutio-subservice-card__description {
+    max-height: 9rem;
+    overflow: hidden;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 140%;
+}
+
+.evolutio-subservice-card__description p:first-of-type {
+    margin-top: 0;
+}
+
+.evolutio-subservice-card__readmore {
+    flex: 1;
+    display: flex;
+    align-items: end;
+    margin: 2rem 0 1.5rem;
+    column-gap: 0.25rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--wp--preset--color--accent);
+    text-decoration: none;
+}
+
+.evolutio-subservice-card__readmore:hover {
+    color: #e4941f;
+    text-decoration: underline;
+}
+
+@media (max-width: 782px) {
+    .evolutio-subservice-card {
+        width: calc((95% - 2rem) / 2);
+    }
+
+    .evolutio-subservice-card__name {
+        margin-top: 0;
+    }
+
+    .evolutio-subservice-card__readmore {
+        flex: 0;
+        margin: 0;
+    }
+}
+
+@media (max-width: 550px) {
+    .evolutio-subservice-card {
+        width: 95%;
+        max-width: 95%;
+    }
+
+    .evolutio-subservice-card__name {
+        text-align: center;
+    }
+}

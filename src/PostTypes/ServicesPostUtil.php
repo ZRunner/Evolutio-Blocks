@@ -66,6 +66,7 @@ abstract class ServicesPostUtil
 		));
 
 		add_action('add_meta_boxes', [self::class, '_AddChildMetaBox']);
+		add_action('rest_api_init', [self::class, '_AddChildApiFields']);
 		add_action('admin_init', [self::class, '_RegisterChildCustomColumns']);
 	}
 
@@ -162,6 +163,26 @@ abstract class ServicesPostUtil
 		);
 	}
 
+	public static function _AddChildApiFields(): void
+	{
+		register_rest_field(
+			'sub_service',
+			'sub_service_description',
+			array(
+				'get_callback' => function ($object) {
+					return get_post_meta($object['id'], 'sub_service_description', true);
+				},
+				'update_callback' => null,
+				'schema' => array(
+					'type' => 'string',
+					'arg_options' => array(
+						'sanitize_callback' => 'sanitize_text_field'
+					),
+				),
+			)
+		);
+	}
+
 	/**
 	 * Save the meta box selections.
 	 *
@@ -184,13 +205,32 @@ abstract class ServicesPostUtil
 				wp_die(__('A parent service is required for sub-services.', 'textdomain'));
 			}
 		}
-		foreach (self::META_FIELDS as $field) {
-			if (isset($_POST[$field])) {
-				update_post_meta($post_id, $field, sanitize_text_field($_POST[$field]));
+
+		if (get_post_type($post_id) === 'service') {
+			foreach (self::META_FIELDS as $field) {
+				if (isset($_POST[$field])) {
+					update_post_meta($post_id, $field, sanitize_text_field($_POST[$field]));
+				}
 			}
-		}
-		if (isset($_POST['parent_service_id'])) {
-			update_post_meta($post_id, 'parent_service_id', intval($_POST['parent_service_id']));
+		} else if (get_post_type($post_id) === 'sub_service') {
+			if (isset($_POST['parent_service_id'])) {
+				update_post_meta($post_id, 'parent_service_id', intval($_POST['parent_service_id']));
+			}
+			if (isset($_POST['sub_service_description'])) {
+				$allowed_tags = array(
+					'p' => array(),
+					'span' => array(),
+					'br' => array(),
+					'strong' => array(),
+					'em' => array(),
+					'ul' => array(),
+					'ol' => array(),
+					'li' => array(),
+					'blockquote' => array(),
+					'a' => array('href' => array(), 'title' => array()),
+				);
+				update_post_meta($post_id, 'sub_service_description', wp_kses($_POST['sub_service_description'], $allowed_tags));
+			}
 		}
 	}
 
@@ -251,7 +291,10 @@ abstract class ServicesPostUtil
 			'textarea_name' => 'sub_service_description',
 			'media_buttons' => false, // Disable "Add Media" button
 			'teeny' => true,          // Use a minimal toolbar
-			'quicktags' => false,     // Disable HTML view
+			'quicktags' => true,     // Disable HTML view
+			'tinymce' => array(
+				'toolbar1' => 'bold,italic,underline,bullist,numlist,blockquote,link,unlink,undo,redo,removeformat',
+			),
 		);
 
 		wp_editor($content, 'sub_service_description', $editor_settings);

@@ -1,0 +1,28 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "evolutio/subservices",
+	"version": "0.1.0",
+	"title": "Sub-services",
+	"category": "design",
+	"icon": "excerpt-view",
+	"description": "A container for sub-service cards",
+	"example": {
+	},
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": "full"
+		}
+	},
+	"supports": {
+		"align": [
+			"full"
+		],
+		"html": false
+	},
+	"textdomain": "subservices",
+	"style": "evolutio-subservices-style",
+	"editorScript": "file:./index.js",
+	"render": "file:./render.php"
+}
