@@ -1,35 +1,9 @@
 .evolutio-services {
-    padding: 4rem 12vw;
+    padding: 3rem 12vw;
     background-color: #F4EDE5;
 }
 
-.evolutio-services__title {
-    margin: 0;
-    font-size: 2.5rem;
-    line-height: 130%;
-    color: var(--wp--preset--color--primary);
-}
-
-.evolutio-services__description {
-    margin: 2rem 0 0;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.4rem;
-    white-space: pre-line;
-    color: var(--wp--preset--color--primary);
-    min-height: 2rem;
-    max-width: 45rem;
-}
-
-.evolutio-services__description textarea.components-textarea-control__input {
-    padding: 0;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.4rem;
-}
-
 .evolutio-services__innercomponents {
-    margin-top: 4rem;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -41,18 +15,6 @@
     .evolutio-services {
         row-gap: 1rem;
         padding: 3.5rem 2rem;
-    }
-
-    .evolutio-services__title {
-        font-size: 1.5rem;
-    }
-
-    .evolutio-services__description {
-        display: none;
-    }
-
-    .evolutio-services__innercomponents {
-        margin-top: 2rem;
     }
 }
 

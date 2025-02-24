@@ -1,7 +1,6 @@
 //@ts-check
 
 import { useBlockProps } from '@wordpress/block-editor';
-import { TextareaControl } from '@wordpress/components';
 import { useEntityRecords } from '@wordpress/core-data';
 
 /** @typedef {{
@@ -17,14 +16,9 @@ import { useEntityRecords } from '@wordpress/core-data';
  * }} Service */
 
 /**
- * @argument {import('@wordpress/blocks').BlockEditProps<
- * 	{
- *      description: string;
- *	}>} props
  * @return {import('react').ReactElement} Element to render
  */
-export default function Edit({ attributes, setAttributes, isSelected }) {
-	const { description } = attributes;
+export default function Edit() {
 
 	// Fetch services from the "service" custom post type
 	/** @type {Service[]} */
@@ -33,13 +27,6 @@ export default function Edit({ attributes, setAttributes, isSelected }) {
 		status: 'publish',
 		order: 'asc',
 	}).records ?? [];
-
-	/**
-	 * @param {string} value The new block description
-	 */
-	const updateDescription = (value) => {
-		setAttributes({ description: value })
-	}
 
 	return (
 		<div {...useBlockProps({ className: "evolutio-services" })}>
@@ -50,28 +37,6 @@ export default function Edit({ attributes, setAttributes, isSelected }) {
 			</div>
 		</div>
 	)
-}
-
-/**
- * 
- * @param {{description: string, updateDescription: (description: string) => void, isSelected: boolean}} props
- */
-function Description({ description, updateDescription, isSelected }) {
-	if (isSelected) {
-		return (
-			<TextareaControl
-				__nextHasNoMarginBottom
-				className="evolutio-services__description"
-				label="Description"
-				placeholder="Enter a description"
-				hideLabelFromVision
-				value={description}
-				onChange={updateDescription}
-				rows={6}
-			/>
-		)
-	}
-	return <p className="evolutio-services__description">{description}</p>
 }
 
 /**

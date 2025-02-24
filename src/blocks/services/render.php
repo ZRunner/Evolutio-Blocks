@@ -1,6 +1,4 @@
 <?php
-$description = $attributes['description'];
-
 $containerAttributes = get_block_wrapper_attributes([
 	'class' => 'evolutio-services',
 ]);
@@ -84,8 +82,6 @@ if (!function_exists('evolutio_render_readmore_link')) {
 
 ?>
 <div <?php echo $containerAttributes ?>>
-	<h3 class="evolutio-services__title">Nos services</h3>
-	<p class="evolutio-services__description"><?php echo esc_html($description); ?></p>
 	<div class="evolutio-services__innercomponents">
 		<?php
 		while ($services->have_posts()) : $services->the_post();

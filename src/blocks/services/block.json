@@ -16,10 +16,6 @@
 		"align": {
 			"type": "string",
 			"default": "full"
-		},
-		"description": {
-			"type": "string",
-			"default": ""
 		}
 	},
 	"supports": {
