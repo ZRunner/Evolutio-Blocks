@@ -41,7 +41,7 @@ abstract class ServicesPostUtil
 		));
 		add_action('add_meta_boxes', [self::class, '_AddParentMetaBox']);
 		add_action('rest_api_init', [self::class, '_AddParentApiFields']);
-		add_action('save_post', [self::class, '_SaveParentService'], 10, 2);
+		add_action('save_post', [self::class, '_SavePost'], 10, 2);
 	}
 
 	public static function _RegisterChildPostType(): void
@@ -66,7 +66,6 @@ abstract class ServicesPostUtil
 		));
 
 		add_action('add_meta_boxes', [self::class, '_AddChildMetaBox']);
-		add_action('save_post', [self::class, '_SaveChildService']);
 		add_action('admin_init', [self::class, '_RegisterChildCustomColumns']);
 	}
 
@@ -169,29 +168,7 @@ abstract class ServicesPostUtil
 	 * @param int $post_id The post ID.
 	 * @param WP_Post $post The post object.
 	 */
-	public static function _SaveParentService(int $post_id, $post): void
-	{
-		// Security checks
-		if (!isset($_POST['service_meta_nonce']) || !wp_verify_nonce($_POST['service_meta_nonce'], 'save_service_meta')) {
-			return;
-		}
-		// Ensure the user has permission to edit
-		if (!current_user_can('edit_post', $post_id)) {
-			return;
-		}
-		foreach (self::META_FIELDS as $field) {
-			if (isset($_POST[$field])) {
-				update_post_meta($post_id, $field, sanitize_text_field($_POST[$field]));
-			}
-		}
-	}
-
-	/**
-	 * Save the meta box selections.
-	 *
-	 * @param int $post_id The post ID.
-	 */
-	public static function _SaveChildService(int $post_id): void
+	public static function _SavePost(int $post_id, $post): void
 	{
 		// Security checks
 		if (!isset($_POST['service_meta_nonce']) || !wp_verify_nonce($_POST['service_meta_nonce'], 'save_service_meta')) {
@@ -202,8 +179,15 @@ abstract class ServicesPostUtil
 			return;
 		}
 		// Check if a parent service is selected
-		if (empty($_POST['parent_service_id'])) {
-			wp_die(__('A parent service is required for sub-services.', 'textdomain'));
+		if (get_post_type($post_id) === 'sub_service') {
+			if (empty($_POST['parent_service_id'])) {
+				wp_die(__('A parent service is required for sub-services.', 'textdomain'));
+			}
+		}
+		foreach (self::META_FIELDS as $field) {
+			if (isset($_POST[$field])) {
+				update_post_meta($post_id, $field, sanitize_text_field($_POST[$field]));
+			}
 		}
 		if (isset($_POST['parent_service_id'])) {
 			update_post_meta($post_id, 'parent_service_id', intval($_POST['parent_service_id']));
