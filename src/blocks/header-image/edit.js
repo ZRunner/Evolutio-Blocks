@@ -81,12 +81,14 @@ export default function Edit({ attributes, setAttributes }) {
  * @returns {string}
  */
 function getBackgroundImageStyle({ backgroundColor, backgroundImage }) {
-	// rewrite backgroundImage to get both a linear-gradient and the original image
-	if (typeof backgroundColor !== 'string' || typeof backgroundImage !== 'string') {
+	if (typeof backgroundImage !== "string") return null;
+	if (!backgroundColor) return backgroundImage;
+	if (typeof backgroundColor !== 'string') {
 		return null;
 	}
 	if (!backgroundImage) return null; // No image, no style.
-	if (!backgroundColor) return backgroundImage; // Only image.
 
-	return `linear-gradient(${backgroundColor}A3 17%, ${backgroundColor}CC 50%), ${backgroundImage}`;
+	if (backgroundColor.startsWith('#')) {
+		return `linear-gradient(${backgroundColor}A3 17%, ${backgroundColor}CC 50%), ${backgroundImage}`;
+	}
 }
