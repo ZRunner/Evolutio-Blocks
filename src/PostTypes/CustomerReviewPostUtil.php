@@ -9,7 +9,7 @@ abstract class CustomerReviewPostUtil
 	/**
 	 * Set up and add the meta box.
 	 */
-	public static function RegisterPostType()
+	public static function RegisterPostType(): void
 	{
 		register_post_type('review', array(
 			'labels' => array(
@@ -34,6 +34,31 @@ abstract class CustomerReviewPostUtil
 		add_action('add_meta_boxes', [self::class, 'AddMetaBox']);
 		add_action('rest_api_init', [self::class, 'AddApiFields']);
 		add_action('save_post', [self::class, 'Save']);
+		add_action('admin_init', [self::class, '_RegisterCustomColumns']);
+	}
+
+	public static function _RegisterCustomColumns(): void
+	{
+		add_filter('manage_review_posts_columns', function ($columns) {
+			$columns['job_title'] = __('Job title', 'textdomain');
+			return $columns;
+		});
+
+		add_filter('manage_edit-review_sortable_columns', function ($columns) {
+			$columns['job_title'] = 'review_job_title';
+			return $columns;
+		});
+
+		add_action('manage_review_posts_custom_column', function ($column, $post_id) {
+			if ($column === 'job_title') {
+				$job_title = get_post_meta($post_id, 'review_job_title', true);
+				if ($job_title) {
+					echo esc_html($job_title);
+				} else {
+					echo '<em>' . __('None', 'textdomain') . '</em>';
+				}
+			}
+		}, 10, 2);
 	}
 
 	/**
