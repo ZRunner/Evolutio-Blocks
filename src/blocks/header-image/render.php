@@ -36,9 +36,6 @@ $backgroundImage = $attributes['style']['background']['backgroundImage']['url'] 
 $backgroundImageStyle = get_background_image_style($backgroundColor, $backgroundImage);
 
 $styles = wp_style_engine_get_styles($attributes['style'])['css'];
-if (!empty($minHeight)) {
-	$styles .= "min-height: $minHeight;";
-}
 $styles .= "background-image: " . $backgroundImageStyle . ";";
 
 $containerAttributes = get_block_wrapper_attributes([

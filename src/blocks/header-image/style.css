@@ -1,6 +1,8 @@
 .evolutio-background-container {
     position: relative;
     background-position: center;
+    height: 50vw;
+    min-height: 600px;
 }
 
 .evolutio-text-container {
@@ -31,6 +33,14 @@
 }
 
 @media (max-width: 782px) {
+    .evolutio-text-container {
+        bottom: 5rem;
+    }
+
+    .evolutio-background-container {
+        min-height: 400px;
+    }
+
     .evolutio-title {
         font-size: 3rem;
     }
@@ -44,6 +54,7 @@
     .evolutio-text-container {
         row-gap: 1rem;
         margin: 0 1.25rem;
+        bottom: 3rem;
     }
 
     .evolutio-title {

@@ -8,10 +8,6 @@
 	"icon": "cover-image",
 	"description": "An image with a colored gradient",
 	"attributes": {
-		"minHeight": {
-			"type": "string",
-			"default": "800px"
-		},
 		"title": {
 			"type": "string",
 			"default": ""

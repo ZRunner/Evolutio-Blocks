@@ -7,7 +7,6 @@ import { Fragment } from 'react/jsx-runtime';
 /**
  * @argument {import('@wordpress/blocks').BlockEditProps<
  * 	{
- * 		minHeight: string,
  * 		title: string,
  * 		subtitle: string
  *	}>} props
@@ -25,7 +24,6 @@ export default function Edit({ attributes, setAttributes }) {
 	// override component style with new background image
 	const customStyle = {
 		...props.style,
-		minHeight: attributes.minHeight ?? '800px',
 		backgroundImage: backgroundImageStyle,
 	};
 
