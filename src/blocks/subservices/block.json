@@ -7,8 +7,7 @@
 	"category": "design",
 	"icon": "excerpt-view",
 	"description": "A container for sub-service cards",
-	"example": {
-	},
+	"example": {},
 	"attributes": {
 		"align": {
 			"type": "string",
@@ -22,10 +21,12 @@
 		"align": [
 			"full"
 		],
+		"multiple": false,
 		"html": false
 	},
 	"textdomain": "subservices",
 	"style": "evolutio-subservices-style",
 	"editorScript": "file:./index.js",
+	"viewScript": "file:./view.js",
 	"render": "file:./render.php"
 }

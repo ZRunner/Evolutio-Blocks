@@ -40,11 +40,14 @@
 }
 
 .evolutio-subservice-card__description {
-    max-height: 9rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 7;
+    line-clamp: 7;
     overflow: hidden;
     font-size: 1rem;
     font-weight: 400;
-    line-height: 140%;
+    line-height: 1.4;
 }
 
 .evolutio-subservice-card__description p:first-of-type {
@@ -52,10 +55,10 @@
 }
 
 .evolutio-subservice-card__readmore {
-    flex: 1;
     display: flex;
-    align-items: end;
-    margin: 2rem 0 1.5rem;
+    justify-content: end;
+    align-items: center;
+    margin: 1rem 0 0;
     column-gap: 0.25rem;
     font-size: 1rem;
     font-weight: 600;
@@ -92,4 +95,48 @@
     .evolutio-subservice-card__name {
         text-align: center;
     }
+}
+
+.evolutio-subservice-modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    justify-content: center;
+}
+
+.evolutio-subservice-modal__content {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-sizing: border-box;
+    max-width: 800px;
+    width: 90vw;
+    max-height: 90vh;
+    overflow: auto;
+    text-align: left;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.evolutio-subservice-modal__close {
+    float: right;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.evolutio-subservice-modal__title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.evolutio-subservice-modal__description {
+    font-size: 1rem;
+    line-height: 1.4;
 }

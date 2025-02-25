@@ -42,6 +42,18 @@ if (!function_exists('evolutio_render_subservice_card')) {
 		<div class="evolutio-subservice-card">
 			<div class="evolutio-subservice-card__name"><?php echo $name; ?></div>
 			<div class="evolutio-subservice-card__description"><?php echo $description; ?></div>
+			<a
+				href="#<?php echo esc_attr($subservice->ID); ?>"
+				class="evolutio-subservice-card__readmore"
+				data-id="<?php echo esc_attr($subservice->ID); ?>"
+				data-name="<?php echo esc_attr($name); ?>"
+				data-description="<?php echo esc_attr($description); ?>">
+				Découvrir
+				<svg width="22" height="22" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M9.41016 19.9201L15.9302 13.4001C16.7002 12.6301 16.7002 11.3701 15.9302 10.6001L9.41016 4.08008"
+						stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+				</svg>
+			</a>
 		</div>
 <?php
 		return ob_get_clean();
@@ -56,4 +68,11 @@ if (!function_exists('evolutio_render_subservice_card')) {
 	endwhile;
 	wp_reset_postdata();
 	?>
+	<div id="evolutio-subservice-modal" class="evolutio-subservice-modal">
+		<div class="evolutio-subservice-modal__content">
+			<span class="evolutio-subservice-modal__close">&times;</span>
+			<h2 class="evolutio-subservice-modal__title"></h2>
+			<div class="evolutio-subservice-modal__description"></div>
+		</div>
+	</div>
 </div>
