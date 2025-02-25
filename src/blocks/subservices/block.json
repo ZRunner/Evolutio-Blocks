@@ -13,6 +13,9 @@
 		"align": {
 			"type": "string",
 			"default": "full"
+		},
+		"parentServiceId": {
+			"type": "number"
 		}
 	},
 	"supports": {

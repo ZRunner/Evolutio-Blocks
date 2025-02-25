@@ -6,7 +6,7 @@ defined('ABSPATH') || exit();
 
 abstract class ServicesPostUtil
 {
-	const META_FIELDS = ['service_mobile_name', 'service_description', 'service_url'];
+	const PARENT_META_FIELDS = ['service_mobile_name', 'service_description', 'service_url'];
 
 	/**
 	 * Set up and add the meta box.
@@ -125,7 +125,7 @@ abstract class ServicesPostUtil
 	 */
 	public static function _AddParentApiFields(): void
 	{
-		foreach (self::META_FIELDS as $field) {
+		foreach (self::PARENT_META_FIELDS as $field) {
 			register_rest_field(
 				'service',
 				$field,
@@ -165,6 +165,22 @@ abstract class ServicesPostUtil
 
 	public static function _AddChildApiFields(): void
 	{
+		register_rest_field(
+			'sub_service',
+			'parent_service_id',
+			array(
+				'get_callback' => function ($object) {
+					return (int) get_post_meta($object['id'], 'parent_service_id', true);
+				},
+				'update_callback' => null,
+				'schema' => array(
+					'type' => 'integer',
+					'arg_options' => array(
+						'sanitize_callback' => 'absint'
+					),
+				),
+			)
+		);
 		register_rest_field(
 			'sub_service',
 			'sub_service_description',
@@ -207,7 +223,7 @@ abstract class ServicesPostUtil
 		}
 
 		if (get_post_type($post_id) === 'service') {
-			foreach (self::META_FIELDS as $field) {
+			foreach (self::PARENT_META_FIELDS as $field) {
 				if (isset($_POST[$field])) {
 					update_post_meta($post_id, $field, sanitize_text_field($_POST[$field]));
 				}

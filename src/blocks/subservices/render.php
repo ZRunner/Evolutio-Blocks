@@ -2,14 +2,28 @@
 $containerAttributes = get_block_wrapper_attributes([
 	'class' => 'evolutio-subservices',
 ]);
+$parent_service_id = isset($attributes['parentServiceId']) ? intval($attributes['parentServiceId']) : 0;
+
 
 // Fetch all services from the "service" custom post type
-$services = new WP_Query(array(
+$args = array(
 	'post_type'      => 'sub_service',
 	'posts_per_page' => -1,
-	'status'         => 'publish',
-	'order'          => 'ASC',
-));
+	'status'		 => 'publish',
+	'order'			 => 'asc',
+	'meta_query'     => array()
+);
+
+// If a parent service is selected, filter by meta key "parent_service_id"
+if ($parent_service_id) {
+	$args['meta_query'][] = array(
+		'key'     => 'parent_service_id',
+		'value'   => $parent_service_id,
+		'compare' => '='
+	);
+}
+
+$subservices = new WP_Query($args);
 
 if (!function_exists('evolutio_render_subservice_card')) {
 	/**
@@ -37,8 +51,8 @@ if (!function_exists('evolutio_render_subservice_card')) {
 ?>
 <div <?php echo $containerAttributes ?>>
 	<?php
-	while ($services->have_posts()) : $services->the_post();
-		echo evolutio_render_subservice_card($services->post);
+	while ($subservices->have_posts()) : $subservices->the_post();
+		echo evolutio_render_subservice_card($subservices->post);
 	endwhile;
 	wp_reset_postdata();
 	?>
