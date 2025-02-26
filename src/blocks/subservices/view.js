@@ -1,3 +1,5 @@
+import DOMPurify from 'dompurify';
+
 window.addEventListener("DOMContentLoaded", () => {
     const modal = document.getElementById("evolutio-subservice-modal");
     const modalTitle = modal.querySelector(".evolutio-subservice-modal__title");
@@ -12,7 +14,7 @@ window.addEventListener("DOMContentLoaded", () => {
      */
     function showModal(id, name, description) {
         modalTitle.textContent = name;
-        modalDescription.innerHTML = description;
+        modalDescription.innerHTML = DOMPurify.sanitize(description);
         modal.style.display = "flex";
         history.replaceState(null, "", "#" + id); // Update URL
     }
