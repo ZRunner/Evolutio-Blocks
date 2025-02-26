@@ -1,6 +1,6 @@
 .evolutio-services {
     padding: 3rem 12vw;
-    background-color: #F4EDE5;
+    background-color: var(--wp--preset--color--base);
 }
 
 .evolutio-services__innercomponents {
