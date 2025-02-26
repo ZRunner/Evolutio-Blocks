@@ -1,0 +1,29 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "evolutio/blog-grid",
+	"version": "0.1.0",
+	"title": "Blog grid",
+	"category": "design",
+	"icon": "grid-view",
+	"description": "Display a grid of blog posts.",
+	"example": {},
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": "full"
+		}
+	},
+	"supports": {
+		"align": [
+			"full"
+		],
+		"multiple": false,
+		"html": false
+	},
+	"textdomain": "blog-grid",
+	"style": "evolutio-blog-grid-style",
+	"editorScript": "file:./index.js",
+	"script": "file:./core.js",
+	"render": "file:./render.php"
+}
