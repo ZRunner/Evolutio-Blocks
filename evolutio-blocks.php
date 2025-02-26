@@ -76,3 +76,18 @@ function evolutio_register_post_types(): void
 }
 
 add_action('init', __NAMESPACE__ . '\\evolutio_register_post_types');
+
+function evolutio_redirect_blog_url()
+{
+	if (is_feed() || !isset($_SERVER['REQUEST_URI'])) {
+		return; // Skip redirection for feeds
+	}
+
+	$path = untrailingslashit(wp_parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
+
+	if ($path === '/blog-it' || is_category('it')) {
+		wp_redirect(home_url('/blog'), 301);
+		exit();
+	}
+}
+add_action('template_redirect', __NAMESPACE__ . '\\evolutio_redirect_blog_url');
