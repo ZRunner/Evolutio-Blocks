@@ -22,6 +22,10 @@
 		"align": [
 			"full"
 		],
+		"color": {
+			"text": false,
+			"background": true
+		},
 		"html": false
 	},
 	"textdomain": "services",
