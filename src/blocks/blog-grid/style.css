@@ -6,8 +6,14 @@
     padding: 0 7vw 3rem;
 }
 
-.evolutio-bloggrid-search {
-    margin-bottom: 1rem;
+#evolutio-bloggrid-search-input {
+    border: 0.5px solid var(--wp--preset--color--primary);
+    border-radius: 24px;
+    padding: 0.5rem 1rem;
+    width: 15rem;
+    max-width: 100%;
+    font-size: 1rem;
+    line-height: 1.25rem;
 }
 
 .evolutio-bloggrid-grid {
@@ -19,6 +25,8 @@
 }
 
 .evolutio-bloggrid-card {
+    display: flex;
+    flex-direction: column;
     background-color: var(--wp--preset--color--base);
     padding: 1.5rem;
     border-radius: 25px;
@@ -26,6 +34,7 @@
 
 .evolutio-bloggrid-title {
     margin: 0 0 0.5rem;
+    min-height: 5.5em;
     font-size: 1.5rem;
     font-weight: 500;
 }
@@ -54,6 +63,8 @@
 }
 
 .evolutio-bloggrid-readmore {
+    flex-grow: 1;
+    align-content: flex-end;
     text-align: right;
 }
 
@@ -65,11 +76,6 @@
 .evolutio-bloggrid-readmore-link:hover {
     color: #e4941f;
     text-decoration: underline;
-}
-
-.evolutio-bloggrid-spinner {
-    text-align: center;
-    margin: 1rem 0;
 }
 
 @media (max-width: 782px) {

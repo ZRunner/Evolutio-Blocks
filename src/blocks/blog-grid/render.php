@@ -5,12 +5,12 @@ $containerAttributes = get_block_wrapper_attributes([
 ?>
 
 <div <?php echo $containerAttributes; ?>>
-	<div class="evolutio-bloggrid-search">
-		<input
-			type="text"
-			id="evolutio-bloggrid-search-input"
-			placeholder="<?php esc_attr_e('Type to search…', 'text-domain'); ?>" />
-	</div>
+	<input
+		type="text"
+		id="evolutio-bloggrid-search-input"
+		placeholder="Rechercher un article…"
+		maxlength="150"
+	/>
 
 	<div class="evolutio-bloggrid-grid">
 	</div>

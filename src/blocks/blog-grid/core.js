@@ -1,5 +1,9 @@
 //@ts-check
 
+
+/** @constant {number} */
+const POSTS_PER_PAGE = 12;
+
 window.addEventListener("DOMContentLoaded", () => {
     /**
      * @typedef {Object} Post
@@ -56,8 +60,6 @@ window.addEventListener("DOMContentLoaded", () => {
     let loading = false;
     let noMorePosts = false;
     let lastSearchValue = '';
-    /** @constant {number} */
-    const POSTS_PER_PAGE = 10;
     const searchInput = /** @type {HTMLInputElement | null} */ (document.getElementById('evolutio-bloggrid-search-input'));
 
     /**
@@ -117,7 +119,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // Attach infinite scroll
     window.addEventListener('scroll', function () {
-        if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
+        if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 400) {
             fetchPosts();
         }
     });
