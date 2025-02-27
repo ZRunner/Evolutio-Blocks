@@ -55,6 +55,7 @@ window.addEventListener("DOMContentLoaded", () => {
      */
     let loading = false;
     let noMorePosts = false;
+    let lastSearchValue = '';
     /** @constant {number} */
     const POSTS_PER_PAGE = 10;
     const searchInput = /** @type {HTMLInputElement | null} */ (document.getElementById('evolutio-bloggrid-search-input'));
@@ -66,7 +67,7 @@ window.addEventListener("DOMContentLoaded", () => {
      */
     async function fetchPosts(searchValue = '', resetGrid = false) {
         if (loading) return;
-        if (!searchValue && noMorePosts) return;
+        if (searchValue === lastSearchValue && noMorePosts) return;
         loading = true;
 
         /** @type {HTMLElement} */
@@ -107,6 +108,7 @@ window.addEventListener("DOMContentLoaded", () => {
                 grid?.insertAdjacentHTML('beforeend', renderPostCard(post));
             });
             loading = false;
+            lastSearchValue = searchValue;
         } catch (error) {
             console.error(error);
             loading = false;
