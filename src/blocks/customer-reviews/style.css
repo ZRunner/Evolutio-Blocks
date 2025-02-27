@@ -24,9 +24,24 @@
 }
 
 .evolutio-customer-reviews__description {
-    margin: 0 0 3rem;
     font-size: 1rem;
     line-height: 1.4rem;
+}
+
+.evolutio-customer-reviews__readmore {
+    display: flex;
+    margin: 1.5rem 0 3rem;
+    column-gap: 0.25rem;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--wp--preset--color--accent);
+    text-decoration: none;
+}
+
+.evolutio-customer-reviews__readmore:hover {
+    color: #e4941f;
+    text-decoration: underline;
 }
 
 .evolutio-customer-reviews__reviews {
@@ -42,8 +57,8 @@
     margin-bottom: 3rem;
     border: 1px solid #E0E0E0DD;
     border-radius: 25px;
-    min-width: 31rem;
-    width: 31rem;
+    min-width: 30rem;
+    width: 30rem;
     box-sizing: border-box;
     max-width: 100%;
     padding: 1.3rem 3.75rem;
@@ -68,6 +83,11 @@
 }
 
 .evolutio-customer-review__content {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 10;
+    line-clamp: 10;
+    overflow: hidden;
     white-space: pre-line;
     line-height: 1.5rem;
     margin: 1.5rem 0;
