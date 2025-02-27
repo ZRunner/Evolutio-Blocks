@@ -1,0 +1,31 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "evolutio/bento-blog",
+	"version": "0.1.0",
+	"title": "Bento Blog",
+	"category": "design",
+	"icon": "grid-view",
+	"description": "Display a Bento grid of 5 blog posts.",
+	"example": {},
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": "full"
+		}
+	},
+	"supports": {
+		"align": [
+			"full"
+		],
+		"color": {
+			"background": true,
+			"text": false
+		},
+		"html": false
+	},
+	"textdomain": "bento-blog",
+	"style": "evolutio-bento-blog-style",
+	"editorScript": "file:./index.js",
+	"render": "file:./render.php"
+}

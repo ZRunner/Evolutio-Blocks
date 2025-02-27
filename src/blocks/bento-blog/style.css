@@ -1,0 +1,155 @@
+.evolutio-bentoblog {
+    padding: 3rem 12vw;
+}
+
+.evolutio-bentoblog-title {
+    margin: 2.5rem 0;
+    font-size: 2.5rem;
+    line-height: 130%;
+    color: var(--wp--preset--color--primary);
+}
+
+.evolutio-bentoblog-description {
+    font-size: 1rem;
+    line-height: 1.4rem;
+}
+
+.evolutio-bentoblog-readmore {
+    display: flex;
+    margin: 1.5rem 0 3rem;
+    column-gap: 0.25rem;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--wp--preset--color--accent);
+    text-decoration: none;
+}
+
+.evolutio-bentoblog-readmore:hover {
+    color: #e4941f;
+    text-decoration: underline;
+}
+
+.evolutio-bentoblog-grid {
+    display: grid;
+    gap: 1rem;
+    max-width: 80rem;
+    margin: auto;
+}
+
+.evolutio-bentoblog-card {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--wp--preset--color--base);
+    padding: 1.5rem;
+    border-radius: 25px;
+}
+
+.evolutio-bentoblog-card-title {
+    margin: 0 0 0.5rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.evolutio-bentoblog-card-title a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.evolutio-bentoblog-card-date {
+    margin: 0.25rem 0 0.5rem;
+    color: #798898;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.evolutio-bentoblog-card-excerpt {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 6;
+    line-clamp: 6;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 0.75rem;
+    color: #798898;
+}
+
+.evolutio-bentoblog-card-excerpt p:first-of-type {
+    margin: 0;
+}
+
+.evolutio-bentoblog-card-readmore {
+    display: flex;
+    margin-top: auto;
+    column-gap: 0.25rem;
+    align-items: center;
+    align-self: flex-end;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--wp--preset--color--accent);
+    text-decoration: none;
+}
+
+.evolutio-bentoblog-card-readmore:hover {
+    color: #e4941f;
+    text-decoration: underline;
+}
+
+@media (min-width: 1300px) {
+    .evolutio-bentoblog-grid {
+        grid-template-columns: repeat(10, 1fr);
+        grid-template-rows: repeat(2, auto);
+    }
+
+    .evolutio-bentoblog-item-0 {
+        grid-column: span 4;
+        grid-row: span 1;
+    }
+
+    .evolutio-bentoblog-item-1,
+    .evolutio-bentoblog-item-2,
+    .evolutio-bentoblog-item-3 {
+        grid-column: span 3;
+        grid-row: span 1;
+    }
+
+    .evolutio-bentoblog-item-4 {
+        grid-column: span 7;
+        grid-row: span 1;
+    }
+}
+
+@media (min-width: 783px) and (max-width: 1299px) {
+    .evolutio-bentoblog-grid {
+        grid-template-columns: repeat(10, 1fr);
+        grid-template-rows: repeat(2, auto);
+    }
+
+    /* First row */
+    .evolutio-bentoblog-item-0,
+    .evolutio-bentoblog-item-3 {
+        grid-column: span 4;
+        grid-row: span 1;
+    }
+
+
+    .evolutio-bentoblog-item-1,
+    .evolutio-bentoblog-item-2 {
+        grid-column: span 6;
+        grid-row: span 1;
+    }
+
+    .evolutio-bentoblog-item-4 {
+        display: none;
+    }
+}
+
+@media (max-width: 782px) {
+    .evolutio-bentoblog-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .evolutio-bentoblog-card {
+        padding: 1rem;
+    }
+}
