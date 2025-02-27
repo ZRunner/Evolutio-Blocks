@@ -1,5 +1,5 @@
 //@ts-check
-
+import DOMPurify from 'dompurify';
 
 /** @constant {number} */
 const POSTS_PER_PAGE = 12;
@@ -28,9 +28,9 @@ window.addEventListener("DOMContentLoaded", () => {
         });
         return (
             '<div class="evolutio-bloggrid-card">' +
-            '<h2 class="evolutio-bloggrid-title">' + (post.title.rendered || '(No title)') + '</h2>' +
+            '<h2 class="evolutio-bloggrid-title">' + DOMPurify.sanitize(post.title.rendered) + '</h2>' +
             '<div class="evolutio-bloggrid-date">' + formattedDate + '</div>' +
-            '<div class="evolutio-bloggrid-excerpt">' + (post.excerpt.rendered || '') + '</div>' +
+            '<div class="evolutio-bloggrid-excerpt">' + DOMPurify.sanitize(post.excerpt.rendered) + '</div>' +
             '<div class="evolutio-bloggrid-readmore">' +
             '<a href="' + post.link + '" class="evolutio-bloggrid-readmore-link">Lire la suite</a>' +
             '</div>' +
