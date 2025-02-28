@@ -1,5 +1,6 @@
 <?php
-$links = $attributes['links'] ?? [];
+$internalLinks = $attributes['internalLinks'] ?? [];
+$externalLinks = $attributes['externalLinks'] ?? [];
 $contactUrl = $attributes['contactUrl'] ?? '';
 $brandImageUrl = $attributes['brandImage']['url'] ?? '';
 
@@ -44,11 +45,11 @@ if (! function_exists('evolutio_render_legal_links')) {
     {
         ob_start();
     ?>
-        <div class="evolutio-footer__legal <?php echo esc_attr($className); ?>">
+        <a href="/politique-de-confidentialite" class="evolutio-footer__legal <?php echo esc_attr($className); ?>">
             Mentions légales et politique de confidentialité
-        </div>
+        </a>
         <div class="evolutio-footer__legal <?php echo esc_attr($className); ?>">
-            Evolutio Avocats - 2024
+            © Evolutio Avocats - 2025
         </div>
 <?php
         return ob_get_clean();
@@ -76,17 +77,17 @@ if (! function_exists('evolutio_render_legal_links')) {
             </span>
             <div class="evolutio-footer__lefthalf">
                 <div class="evolutio-footer__navigation">
-                    <div>Accueil</div>
-                    <div>Notre philosophie</div>
-                    <div>Nos services</div>
-                    <div>Notre équipe</div>
-                    <div>Notre blog</div>
+                    <?php foreach ($internalLinks as $link) : ?>
+                        <a href="<?php echo esc_url($link['url']); ?>" class="evolutio-footer__innerlink">
+                            <?php echo esc_html($link['label']); ?>
+                        </a>
+                    <?php endforeach; ?>
                 </div>
             </div>
             <hr />
             <div class="evolutio-footer__righthalf">
                 <div class="evolutio-footer__outerlinks">
-                    <?php foreach ($links as $link) : ?>
+                    <?php foreach ($externalLinks as $link) : ?>
                         <?php echo evolutio_render_external_link($link); ?>
                     <?php endforeach; ?>
                 </div>

@@ -8,42 +8,66 @@ import { Fragment } from 'react/jsx-runtime';
 /**
  * @argument {import('@wordpress/blocks').BlockEditProps<
  *  {
- *      links: {label: string, icon: "hammer" | "linkedin", url: string}[],
+ *      internalLinks: {label: string, url: string}[],
+ *      externalLinks: {label: string, icon: "hammer" | "linkedin", url: string}[],
  *      contactUrl: string,
  *      brandImage: {id: number, url: string,} | null,
  *  }>} props
  * @return {import('react').ReactElement} Element to render.
  */
 export default function Edit({ attributes, setAttributes }) {
-    const { links, contactUrl, brandImage } = attributes;
+    const { internalLinks, externalLinks, contactUrl, brandImage } = attributes;
 
-    const addLink = () => {
-        setAttributes({ links: [...links, { label: '', icon: 'hammer', url: '' }] });
+    const addExternalLink = () => {
+        setAttributes({ externalLinks: [...externalLinks, { label: '', icon: 'hammer', url: '' }] });
+    };
+
+    const addInternalLink = () => {
+        setAttributes({ internalLinks: [...internalLinks, { label: '', url: '' }] });
     };
 
     /**
-     * @param {number} index The index of the link to update.
+     * @param {number} index The index of the internal link to update.
+     * @param {"label" | "url"} key Which property to update.
+     * @param {string} value The new value.
+     */
+    const updateInternalLink = (index, key, value) => {
+        const updatedIntLinks = [...internalLinks];
+        updatedIntLinks[index][key] = value;
+        setAttributes({ internalLinks: updatedIntLinks });
+    };
+
+    /**
+     * @param {number} index The index of the internal link to remove.
+     */
+    const removeInternalLink = (index) => {
+        const updatedIntLinks = internalLinks.filter((_, i) => i !== index);
+        setAttributes({ internalLinks: updatedIntLinks });
+    };
+
+    /**
+     * @param {number} index The index of the ext. link to update.
      * @param {"label" | "url" | "icon" } key Which property to update.
      * @param {string} value The new value.
      */
-    const updateLink = (index, key, value) => {
-        const updatedLinks = [...links];
+    const updateExternalLink = (index, key, value) => {
+        const updatedExtLinks = [...externalLinks];
         if (key === "icon") {
             if (value === "linkedin" || value === "hammer") {
-                updatedLinks[index][key] = value;
+                updatedExtLinks[index][key] = value;
             }
         } else {
-            updatedLinks[index][key] = value;
+            updatedExtLinks[index][key] = value;
         }
-        setAttributes({ links: updatedLinks });
+        setAttributes({ externalLinks: updatedExtLinks });
     };
 
     /**
-     * @param {number} index The index of the link to remove.
+     * @param {number} index The index of the ext. link to remove.
      */
-    const removeLink = (index) => {
-        const updatedLinks = links.filter((_, i) => i !== index);
-        setAttributes({ links: updatedLinks });
+    const removeExternalLink = (index) => {
+        const updatedExtLinks = externalLinks.filter((_, i) => i !== index);
+        setAttributes({ externalLinks: updatedExtLinks });
     };
 
     /**
@@ -69,43 +93,6 @@ export default function Edit({ attributes, setAttributes }) {
             <InspectorControls>
                 <PanelBody title="Footer Settings" initialOpen>
                     <PanelRow>
-                        <Button variant="primary" onClick={addLink}>
-                            Add Link
-                        </Button>
-                    </PanelRow>
-                    {links.map((link, index) => (
-                        <Fragment key={index}>
-                            <hr />
-                            <TextControl
-                                label={`Label ${index + 1}`}
-                                value={link.label}
-                                onChange={(value) => updateLink(index, 'label', value)}
-                                __nextHasNoMarginBottom
-                            />
-                            <TextControl
-                                label={`URL ${index + 1}`}
-                                value={link.url}
-                                onChange={(value) => updateLink(index, 'url', value)}
-                                __nextHasNoMarginBottom
-                            />
-                            <PanelRow>
-                                <SelectControl
-                                    label={`Icon ${index + 1}`}
-                                    value={link.icon}
-                                    options={[
-                                        { label: 'Hammer', value: 'hammer' },
-                                        { label: 'LinkedIn', value: 'linkedin' },
-                                    ]}
-                                    onChange={(value) => updateLink(index, 'icon', value)}
-                                    __nextHasNoMarginBottom
-                                />
-                                <Button isDestructive onClick={() => removeLink(index)}>
-                                    Remove
-                                </Button>
-                            </PanelRow>
-                        </Fragment>
-                    ))}
-                    <PanelRow>
                         <TextControl
                             label="Contact page URL"
                             value={contactUrl}
@@ -129,6 +116,72 @@ export default function Edit({ attributes, setAttributes }) {
                         </MediaUploadCheck>
                     </PanelRow>
                 </PanelBody>
+                <PanelBody title="Internal Links" initialOpen>
+                    <PanelRow>
+                        <Button variant="primary" onClick={addInternalLink}>
+                            Add Link
+                        </Button>
+                    </PanelRow>
+                    {internalLinks.map((link, index) => (
+                        <Fragment key={index}>
+                            <hr />
+                            <TextControl
+                                label={`Label ${index + 1}`}
+                                value={link.label}
+                                onChange={(value) => updateInternalLink(index, 'label', value)}
+                                __nextHasNoMarginBottom
+                            />
+                            <TextControl
+                                label={`URL ${index + 1}`}
+                                value={link.url}
+                                onChange={(value) => updateInternalLink(index, 'url', value)}
+                                __nextHasNoMarginBottom
+                            />
+                            <Button isDestructive onClick={() => removeInternalLink(index)}>
+                                Remove
+                            </Button>
+                        </Fragment>
+                    ))}
+                </PanelBody>
+                <PanelBody title="External Links" initialOpen>
+                    <PanelRow>
+                        <Button variant="primary" onClick={addExternalLink}>
+                            Add Link
+                        </Button>
+                    </PanelRow>
+                    {externalLinks.map((link, index) => (
+                        <Fragment key={index}>
+                            <hr />
+                            <TextControl
+                                label={`Label ${index + 1}`}
+                                value={link.label}
+                                onChange={(value) => updateExternalLink(index, 'label', value)}
+                                __nextHasNoMarginBottom
+                            />
+                            <TextControl
+                                label={`URL ${index + 1}`}
+                                value={link.url}
+                                onChange={(value) => updateExternalLink(index, 'url', value)}
+                                __nextHasNoMarginBottom
+                            />
+                            <PanelRow>
+                                <SelectControl
+                                    label={`Icon ${index + 1}`}
+                                    value={link.icon}
+                                    options={[
+                                        { label: 'Hammer', value: 'hammer' },
+                                        { label: 'LinkedIn', value: 'linkedin' },
+                                    ]}
+                                    onChange={(value) => updateExternalLink(index, 'icon', value)}
+                                    __nextHasNoMarginBottom
+                                />
+                                <Button isDestructive onClick={() => removeExternalLink(index)}>
+                                    Remove
+                                </Button>
+                            </PanelRow>
+                        </Fragment>
+                    ))}
+                </PanelBody>
             </InspectorControls>
             <div {...useBlockProps({ className: "evolutio-footer" })}>
                 <div className="evolutio-footer__top">
@@ -150,17 +203,17 @@ export default function Edit({ attributes, setAttributes }) {
                         </span>
                         <div className="evolutio-footer__lefthalf">
                             <div className="evolutio-footer__navigation">
-                                <div>Accueil</div>
-                                <div>Notre philosophie</div>
-                                <div>Nos services</div>
-                                <div>Notre équipe</div>
-                                <div>Notre blog</div>
+                                {internalLinks.map(link => (
+                                    <div key={link.url} title={link.url} className="evolutio-footer__innerlink">
+                                        {link.label}
+                                    </div>
+                                ))}
                             </div>
                         </div>
                         <hr />
                         <div className="evolutio-footer__righthalf">
                             <div className="evolutio-footer__outerlinks">
-                                {links.map(link => (
+                                {externalLinks.map(link => (
                                     <ExternalLink key={link.url} link={link} />
                                 ))}
                             </div>
@@ -210,7 +263,7 @@ function LinkedInIcon() {
 function LegalLinks({ className }) {
     return (
         <Fragment>
-            <div className={"evolutio-footer__legal " + (className ?? "")}>
+            <div className={"evolutio-footer__legal " + (className ?? "")} title="/politique-de-confidentialite">
                 Mentions légales et politique de confidentialité
             </div>
             <div className={"evolutio-footer__legal " + (className ?? "")}>

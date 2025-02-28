@@ -6,7 +6,11 @@
     "description": "A footer with external links and a contact button.",
     "icon": "menu",
     "attributes": {
-        "links": {
+        "internalLinks": {
+            "type": "array",
+            "default": []
+        },
+        "externalLinks": {
             "type": "array",
             "default": []
         },
