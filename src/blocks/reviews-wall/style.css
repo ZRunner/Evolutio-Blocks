@@ -1,0 +1,58 @@
+.evolutio-reviews-wall {
+    padding: 4rem 12vw;
+    justify-items: center;
+}
+
+.evolutio-reviews-wall__container {
+    max-width: 80rem;
+    column-count: 2;
+    column-gap: 3rem;
+}
+
+.evolutio-reviews-wall__card {
+    break-inside: avoid;
+    display: inline-block;
+    margin-bottom: 3rem;
+    padding: 1.5rem;
+    border: 1px solid #E0E0E0;
+    border-radius: 25px;
+}
+
+.evolutio-reviews-wall__role {
+    font-size: 1.125rem;
+    font-weight: 500;
+    line-height: 1.5rem;
+}
+
+.evolutio-reviews-wall__content {
+    white-space: pre-line;
+    line-height: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.evolutio-reviews-wall__author {
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.5rem;
+    text-align: right;
+}
+
+@media (max-width: 900px) {
+    .evolutio-reviews-wall__container {
+        column-gap: 2rem;
+    }
+
+    .evolutio-reviews-wall__card {
+        margin-bottom: 2rem;
+    }
+}
+
+@media (max-width: 782px) {
+    .evolutio-reviews-wall__container {
+        column-count: 1;
+    }
+
+    .evolutio-reviews-wall__card {
+        margin-bottom: 1.5rem;
+    }
+}

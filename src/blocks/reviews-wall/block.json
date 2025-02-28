@@ -1,0 +1,28 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "evolutio/reviews-wall",
+    "title": "Customer reviews wall",
+    "category": "text",
+    "description": "A masonry wall presenting customer reviews",
+    "icon": "star-half",
+    "attributes": {
+        "align": {
+            "type": "string",
+            "default": "full"
+        }
+    },
+    "supports": {
+        "align": [
+            "full"
+        ],
+        "color": {
+            "background": true,
+            "text": false
+        },
+        "html": false
+    },
+    "style": "evolutio-reviews-wall-style",
+    "editorScript": "file:./index.js",
+    "render": "file:./render.php"
+}
