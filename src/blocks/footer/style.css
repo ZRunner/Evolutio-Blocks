@@ -164,7 +164,7 @@ a.evolutio-footer__legal:hover {
 }
 
 .evolutio-footer__outerlink:hover svg {
-    background-color: white;
+    background-color: var(--wp--preset--color--base-2)
 }
 
 .evolutio-footer__mobile-legals {
