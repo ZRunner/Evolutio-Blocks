@@ -21,6 +21,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 use Evolutio\Parts\FooterPatternUtil;
 use Evolutio\Parts\HeaderPatternUtil;
 use Evolutio\PostTypes\CustomerReviewPostUtil;
+use Evolutio\PostTypes\MemberPostUtil;
 use Evolutio\PostTypes\ServicesPostUtil;
 
 // Exit if accessed directly
@@ -72,6 +73,7 @@ add_action('init', __NAMESPACE__ . '\\evolutio_register_patterns');
 function evolutio_register_post_types(): void
 {
 	CustomerReviewPostUtil::RegisterPostType();
+	MemberPostUtil::RegisterPostType();
 	ServicesPostUtil::RegisterPostType();
 }
 
