@@ -66,7 +66,7 @@
 }
 
 .evolutio-subservice-card__readmore:hover {
-    color: #e4941f;
+    color: var(--wp--preset--color--accent-2);
     text-decoration: underline;
 }
 
@@ -97,7 +97,7 @@
 }
 
 .evolutio-subservice-modal {
-    display: none; /* Hidden by default */
+    display: none;
     position: fixed;
     z-index: 1000;
     left: 0;

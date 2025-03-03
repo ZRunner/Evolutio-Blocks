@@ -26,7 +26,7 @@
 }
 
 .evolutio-bentoblog-readmore:hover {
-    color: #e4941f;
+    color: var(--wp--preset--color--accent-2);
     text-decoration: underline;
 }
 
@@ -91,7 +91,7 @@
 }
 
 .evolutio-bentoblog-card-readmore:hover {
-    color: #e4941f;
+    color: var(--wp--preset--color--accent-2);
     text-decoration: underline;
 }
 

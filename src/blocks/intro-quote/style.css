@@ -51,6 +51,6 @@
 }
 
 .evolutio-quote-link:hover {
-    color: #e4941f;
+    color: var(--wp--preset--color--accent-2);
     text-decoration: underline;
 }
