@@ -1,0 +1,31 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "evolutio/members-list",
+	"version": "0.1.0",
+	"title": "Members list",
+	"category": "design",
+	"icon": "groups",
+	"description": "The list of collaborators, filtered by status.",
+	"example": {},
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": "full"
+		},
+		"status": {
+			"type": "string",
+			"default": null
+		}
+	},
+	"supports": {
+		"align": [
+			"full"
+		],
+		"html": false
+	},
+	"style": "evolutio-members-list-style",
+	"editorScript": "file:./index.js",
+	"viewScript": "file:./view.js",
+	"render": "file:./render.php"
+}

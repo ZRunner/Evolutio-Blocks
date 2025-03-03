@@ -7,6 +7,10 @@ defined('ABSPATH') || exit();
 
 abstract class MemberPostUtil
 {
+    const MEMBER_STATUSES = [
+        'associate' => 'Associé',
+        'collaborator' => 'Collaborateur'
+    ];
 
     private static function getMetaFields()
     {
@@ -50,7 +54,7 @@ abstract class MemberPostUtil
             'exclude_from_search' => true,
             'show_in_rest' => true,
             'supports' => array('title', 'thumbnail'), // Title is the name, thumbnail for the photo
-            'menu_position' => 8,
+            'menu_position' => 5,
             'menu_icon' => 'dashicons-businessperson',
             'delete_with_user' => false,
         ));
@@ -193,8 +197,11 @@ abstract class MemberPostUtil
                     case FieldType::STATUS:
                 ?>
                         <select id="<?php echo $esc_key; ?>" name="<?php echo $esc_key; ?>">
-                            <option value="associate" <?php selected($value, 'associate'); ?>>Associé</option>
-                            <option value="collaborator" <?php selected($value, 'collaborator'); ?>>Collaborateur</option>
+                            <?php foreach (self::MEMBER_STATUSES as $status => $satus_label) { ?>
+                                <option value="<?php echo $status; ?>" <?php selected($value, $status); ?>>
+                                    <?php echo $satus_label; ?>
+                                </option>
+                            <?php } ?>
                         </select>
                     <?php
                         break;
