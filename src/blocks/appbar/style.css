@@ -23,6 +23,7 @@
 .evolutio-appbar__floating {
     /* Fallback to solid color if color-mix isn't supported */
     background: var(--wp--preset--color--primary);
+    backdrop-filter: blur(16px);
     border-radius: 35px;
     position: fixed;
     top: 0.8rem;
