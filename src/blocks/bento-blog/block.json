@@ -25,7 +25,7 @@
 		"html": false
 	},
 	"textdomain": "bento-blog",
-	"style": "evolutio-bento-blog-style",
+	"style": "file:./style-index.css",
 	"editorScript": "file:./index.js",
 	"render": "file:./render.php"
 }

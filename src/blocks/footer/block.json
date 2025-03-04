@@ -27,7 +27,7 @@
         "align": true,
         "html": false
     },
-    "style": "evolutio-footer-style",
+    "style": "file:./style-index.css",
     "editorScript": "file:./index.js",
     "render": "file:./render.php"
 }

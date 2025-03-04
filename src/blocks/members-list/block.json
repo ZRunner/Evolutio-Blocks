@@ -28,7 +28,7 @@
 		},
 		"html": false
 	},
-	"style": "evolutio-members-list-style",
+	"style": "file:./style-index.css",
 	"editorScript": "file:./index.js",
 	"viewScript": "file:./view.js",
 	"render": "file:./render.php"

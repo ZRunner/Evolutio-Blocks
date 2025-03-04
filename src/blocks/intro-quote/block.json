@@ -29,7 +29,7 @@
     "supports": {
         "html": false
     },
-    "style": "evolutio-intro-quote-style",
+    "style": "file:./style-index.css",
     "editorScript": "file:./index.js",
     "render": "file:./render.php"
 }

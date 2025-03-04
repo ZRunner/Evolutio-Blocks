@@ -22,7 +22,7 @@
 		"html": false
 	},
 	"textdomain": "blog-grid",
-	"style": "evolutio-blog-grid-style",
+	"style": "file:./style-index.css",
 	"editorScript": "file:./index.js",
 	"script": "file:./core.js",
 	"render": "file:./render.php"

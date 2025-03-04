@@ -27,7 +27,7 @@
         ],
         "html": false
     },
-    "style": "evolutio-customer-reviews-style",
+    "style": "file:./style-index.css",
     "editorScript": "file:./index.js",
     "viewScript": "file:./view.js",
     "render": "file:./render.php"

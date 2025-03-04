@@ -22,7 +22,7 @@
         "align": false,
         "html": false
     },
-    "style": "evolutio-appbar-style",
+    "style": "file:./style-index.css",
     "editorScript": "file:./index.js",
     "render": "file:./render.php"
 }

@@ -32,7 +32,7 @@
 		"html": false
 	},
 	"textdomain": "header-image",
-	"style": "evolutio-header-image-style",
+	"style": "file:./style-index.css",
 	"editorScript": "file:./index.js",
 	"render": "file:./render.php"
 }

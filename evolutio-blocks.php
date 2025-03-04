@@ -38,24 +38,10 @@ function evolutio_register_blocks(): void
 {
 	$plugin_dir = __DIR__;
 	$build_dir = $plugin_dir . '/build/blocks';
-	$plugin_url = plugin_dir_url(__FILE__);
 
 	// Automatically register all blocks in the 'build' directory
 	foreach (glob($build_dir . '/*', GLOB_ONLYDIR) as $block_dir) {
-		$block_name = basename($block_dir);
-		$style_path = $plugin_dir . "/src/blocks/{$block_name}/style.css";
-
 		register_block_type($block_dir);
-
-		// Conditionally enqueue the stylesheet if it exists
-		if (file_exists($style_path)) {
-			wp_enqueue_style(
-				"evolutio-{$block_name}-style",
-				$plugin_url . "src/blocks/{$block_name}/style.css",
-				[],
-				filemtime($style_path) // Cache-busting based on file modification time
-			);
-		}
 	}
 }
 

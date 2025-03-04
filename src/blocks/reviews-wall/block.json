@@ -22,7 +22,7 @@
         },
         "html": false
     },
-    "style": "evolutio-reviews-wall-style",
+    "style": "file:./style-index.css",
     "editorScript": "file:./index.js",
     "render": "file:./render.php"
 }

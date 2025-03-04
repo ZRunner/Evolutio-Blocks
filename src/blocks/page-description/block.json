@@ -32,6 +32,6 @@
         },
         "html": false
     },
-    "style": "evolutio-page-description-style",
+    "style": "file:./style-index.css",
     "editorScript": "file:./index.js"
 }
