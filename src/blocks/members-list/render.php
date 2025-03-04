@@ -11,7 +11,7 @@ $args = array(
 	'posts_per_page' => -1,
 	'status'		 => 'publish',
 	'order'			 => 'asc',
-	'order_by'       => 'title',
+	'orderby'        => 'title',
 	'meta_query'     => array()
 );
 
