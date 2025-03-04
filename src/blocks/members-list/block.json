@@ -22,6 +22,10 @@
 		"align": [
 			"full"
 		],
+		"color": {
+			"background": true,
+			"text": false
+		},
 		"html": false
 	},
 	"style": "evolutio-members-list-style",

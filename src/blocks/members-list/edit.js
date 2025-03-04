@@ -3,7 +3,7 @@
 import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
 import { PanelBody, PanelRow, SelectControl } from '@wordpress/components';
 import { useEntityRecords } from '@wordpress/core-data';
-import { Fragment } from 'react';
+import { Fragment, useMemo } from 'react';
 
 
 /** @typedef {{
@@ -18,8 +18,8 @@ import { Fragment } from 'react';
 /**
  * @argument {import('@wordpress/blocks').BlockEditProps<
  *  {
-*      status: 'associate' | 'collaborator' | null,
-*  }>} props
+ *      status: 'associate' | 'collaborator' | null,
+ *  }>} props
  * @return {import('react').ReactElement} Element to render
  */
 export default function Edit({ attributes, setAttributes }) {
@@ -37,11 +37,22 @@ export default function Edit({ attributes, setAttributes }) {
 		members = members.filter((member) => member.status === status);
 	}
 
+	const title = useMemo(() => {
+		switch (status) {
+			case 'associate':
+				return 'Nos associés';
+			case 'collaborator':
+				return 'Nos collaborateurs';
+			default:
+				return 'Notre équipe';
+		}
+	}, [status]);
+
 	/**
-	 * @param {Member['status']} value The member status to filter
+	 * @param {typeof selectOptions[number]['value']} value The member status to filter
 	 */
 	const updateFilteringStatus = (value) => {
-		setAttributes({ status: value });
+		setAttributes({ status: value === "" ? null : value });
 	}
 
 	return (
@@ -51,11 +62,8 @@ export default function Edit({ attributes, setAttributes }) {
 					<PanelRow>
 						<SelectControl
 							label="Select Status to display"
-							value={status}
-							options={[
-								{ label: 'Associés', value: 'associate' },
-								{ label: 'Collaborateurs', value: 'collaborator' },
-							]}
+							value={status || ""}
+							options={selectOptions}
 							onChange={updateFilteringStatus}
 							__next40pxDefaultSize
 							__nextHasNoMarginBottom
@@ -64,13 +72,23 @@ export default function Edit({ attributes, setAttributes }) {
 				</PanelBody>
 			</InspectorControls>
 			<div {...useBlockProps({ className: "evolutio-memberslist" })}>
-				{members.map((member) => (
-					<MemberCard key={member.id} {...member} />
-				))}
+				<h3>{title}</h3>
+				<div className="evolutio-memberslist-container">
+					{members.map((member) => (
+						<MemberCard key={member.id} {...member} />
+					))}
+				</div>
 			</div>
 		</Fragment>
 	)
 }
+
+/** @type {{label: String, value: 'associate' | 'collaborator' | ''}[]} */
+const selectOptions = [
+	{ label: 'Tous', value: "" },
+	{ label: 'Associés', value: 'associate' },
+	{ label: 'Collaborateurs', value: 'collaborator' },
+]
 
 /**
  * @param {Member} props The member to display

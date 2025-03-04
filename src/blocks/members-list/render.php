@@ -2,7 +2,7 @@
 $containerAttributes = get_block_wrapper_attributes([
 	'class' => 'evolutio-memberslist',
 ]);
-$status = isset($attributes['status']);
+$status = isset($attributes['status']) ? $attributes['status'] : '';
 
 
 // Fetch all members from the "team_member" custom post type
@@ -18,12 +18,24 @@ $args = array(
 // If a status is selected, filter by meta key "status"
 if ($status) {
 	$args['meta_query'][] = array(
-		'key'     => 'status',
+		'key'     => 'team_member_status',
 		'value'   => $status,
 		'compare' => '='
 	);
 }
 $members = new WP_Query($args);
+
+switch ($status) {
+	case 'associate':
+		$title = 'Nos associés';
+		break;
+	case 'collaborator':
+		$title = 'Nos collaborateurs';
+		break;
+	default:
+		$title = 'Notre équipe';
+		break;
+}
 
 if (!function_exists('evolutio_render_member_card')) {
 	/**
@@ -64,12 +76,15 @@ if (!function_exists('evolutio_render_member_card')) {
 
 ?>
 <div <?php echo $containerAttributes ?>>
-	<?php
-	while ($members->have_posts()) : $members->the_post();
-		echo evolutio_render_member_card($members->post);
-	endwhile;
-	wp_reset_postdata();
-	?>
+	<h3><?php echo esc_html($title) ?></h3>
+	<div class="evolutio-memberslist-container">
+		<?php
+		while ($members->have_posts()) : $members->the_post();
+			echo evolutio_render_member_card($members->post);
+		endwhile;
+		wp_reset_postdata();
+		?>
+	</div>
 	<div id="evolutio-memberslist-modal" class="evolutio-memberslist-modal">
 		<div class="evolutio-memberslist-modal__content">
 			<span class="evolutio-memberslist-modal__close">&times;</span>

@@ -1,14 +1,21 @@
 .evolutio-memberslist {
+    padding: 1rem 7vw 3rem;
+}
+
+.evolutio-memberslist>h3 {
+    padding: 0 5vw;
+}
+
+.evolutio-memberslist-container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     gap: 3rem;
-    padding: 1rem 7vw 3rem;
     justify-content: center;
 }
 
 @media (max-width: 782px) {
-    .evolutio-memberslist {
+    .evolutio-memberslist-container {
         gap: 1.5rem;
         padding: 2rem 2rem;
         justify-content: flex-start;
