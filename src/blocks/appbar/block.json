@@ -15,7 +15,7 @@
         },
         "contactUrl": {
             "type": "string",
-            "default": "/contact"
+            "default": "/contactez-nous"
         }
     },
     "supports": {

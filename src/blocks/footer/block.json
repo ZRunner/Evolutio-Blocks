@@ -16,7 +16,7 @@
         },
         "contactUrl": {
             "type": "string",
-            "default": "/contact"
+            "default": "/contactez-nous"
         },
         "brandImage": {
             "type": "object",
