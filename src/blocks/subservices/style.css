@@ -56,18 +56,8 @@
 .evolutio-subservice-card__readmore {
     display: flex;
     justify-content: end;
-    align-items: center;
     margin: 1rem 0 0;
-    column-gap: 0.25rem;
     font-size: 1rem;
-    font-weight: 600;
-    color: var(--wp--preset--color--accent);
-    text-decoration: none;
-}
-
-.evolutio-subservice-card__readmore:hover {
-    color: var(--wp--preset--color--accent-2);
-    text-decoration: underline;
 }
 
 @media (max-width: 782px) {

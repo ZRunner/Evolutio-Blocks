@@ -47,14 +47,3 @@
     font-size: 1rem;
     font-weight: 600;
 }
-
-.evolutio-quote-link a {
-    display: inline-flex;
-    color: var(--wp--preset--color--accent);
-    text-decoration: none;
-}
-
-.evolutio-quote-link a:hover {
-    color: var(--wp--preset--color--accent-2);
-    text-decoration: underline;
-}

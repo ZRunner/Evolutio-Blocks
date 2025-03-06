@@ -110,14 +110,10 @@ function SubServiceCard(props) {
 				value={sub_service_description}
 			/>
 			<span
-				className="evolutio-subservice-card__readmore"
+				className="evolutio-subservice-card__readmore evolutio-link"
 				data-name="<?php echo esc_attr($name); ?>"
 				data-description="<?php echo esc_attr($description); ?>">
 				Découvrir
-				<svg width="22" height="22" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path d="M9.41016 19.9201L15.9302 13.4001C16.7002 12.6301 16.7002 11.3701 15.9302 10.6001L9.41016 4.08008"
-						stroke="currentColor" strokeWidth="2" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
-				</svg>
 			</span>
 		</div>
 	)
