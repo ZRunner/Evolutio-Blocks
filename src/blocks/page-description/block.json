@@ -30,6 +30,9 @@
             "background": true,
             "text": true
         },
+        "typography": {
+            "textAlign": true
+        },
         "html": false
     },
     "style": "file:./style-index.css",

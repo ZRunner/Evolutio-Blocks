@@ -1,6 +1,8 @@
 //@ts-check
 
-import { useBlockProps, RichText } from '@wordpress/block-editor';
+import { useBlockProps, RichText, InspectorControls } from '@wordpress/block-editor';
+import { PanelRow, PanelBody, Button } from '@wordpress/components';
+import { Fragment } from 'react';
 
 /**
  * @type {{
@@ -19,11 +21,17 @@ const DISABLED_FORMATS = [
  * @argument {import('@wordpress/blocks').BlockEditProps<
 * 	{
 * 		text: string,
+*       style?: {
+*           typography?: {
+*               textAlign?: import('csstype').Property.TextAlign,
+*           }
+*       }
 *	}>} props
 * @return {import('react').ReactElement} Element to render.
 */
 export default function Edit({ attributes, setAttributes }) {
     const { text } = attributes;
+    const textAlign = attributes.style?.typography?.textAlign;
 
     /** @type {{name: string}[]} */
     const defaultFormats = wp.data.select('core/rich-text').getFormatTypes();
@@ -36,14 +44,32 @@ export default function Edit({ attributes, setAttributes }) {
         setAttributes({ text: newText });
     }
 
+    /**
+     * Reset the text alignment
+     */
+    const resetTextAlign = () => {
+        setAttributes({ style: undefined })
+    }
+
     return (
-        <RichText
-            {...useBlockProps({ className: "evolutio-pagedescription" })}
-            tagName="div"
-            allowedFormats={allowedFormats}
-            value={text}
-            onChange={updateDescription}
-            placeholder="Write your text here"
-        />
+        <Fragment>
+            <InspectorControls group="styles">
+                <PanelBody title="Typography">
+                    <PanelRow>
+                        <Button variant="primary" onClick={resetTextAlign} disabled={!textAlign}>
+                            Reset text alignment
+                        </Button>
+                    </PanelRow>
+                </PanelBody>
+            </InspectorControls>
+            <RichText
+                {...useBlockProps({ className: "evolutio-pagedescription", style: { textAlign } })}
+                tagName="div"
+                allowedFormats={allowedFormats}
+                value={text}
+                onChange={updateDescription}
+                placeholder="Write your text here"
+            />
+        </Fragment>
     );
 }
