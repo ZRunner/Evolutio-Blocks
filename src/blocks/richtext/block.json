@@ -21,6 +21,10 @@
             "type": "string",
             "default": ""
         },
+        "maxWidth": {
+            "type": "string",
+            "default": ""
+        },
         "style": {
             "type": "object",
             "default": {
