@@ -32,8 +32,8 @@
 }
 
 .evolutio-customer-reviews__readmore {
-    display: flex;
-    margin: 2.25rem 0 3rem;
+    display: inline-flex;
+    margin: 1.25rem 0 3rem;
     column-gap: 0.25rem;
     align-items: center;
     font-size: 1rem;

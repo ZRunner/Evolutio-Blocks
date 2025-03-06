@@ -14,7 +14,7 @@ $contactUrl = $attributes['contactUrl'];
                 </a>
             <?php endforeach; ?>
         </nav>
-        <a class="evolutio-appbar__button" href=<?php echo esc_attr($contactUrl) ?>>Contact</a>
+        <a class="evolutio-appbar__button evolutio-plain-btn" href=<?php echo esc_attr($contactUrl) ?>>Contact</a>
     </div>
 </div>
 <div class="evolutio-appbar-mobile-container">
@@ -40,7 +40,7 @@ $contactUrl = $attributes['contactUrl'];
                     </a>
                 </li>
             <?php endforeach; ?>
-            <a class="evolutio-appbar__button" href=<?php echo esc_attr($contactUrl) ?>>Contactez-nous</a>
+            <a class="evolutio-appbar__button evolutio-plain-btn" href=<?php echo esc_attr($contactUrl) ?>>Contactez-nous</a>
         </ul>
     </nav>
 </div>

@@ -40,8 +40,10 @@
 }
 
 @supports (background: color-mix(in srgb, black 50%, white)) {
-    .evolutio-appbar__floating {
-        background: color-mix(in srgb, var(--wp--preset--color--primary) 75%, transparent);
+    @media (prefers-contrast: no-preference) {
+        .evolutio-appbar__floating {
+            background: color-mix(in srgb, var(--wp--preset--color--primary) 75%, transparent);
+        }
     }
 }
 
@@ -69,7 +71,6 @@
 
 .evolutio-appbar__link:hover {
     color: var(--wp--preset--color--accent);
-    text-decoration: underline;
 }
 
 .evolutio-appbar__button {

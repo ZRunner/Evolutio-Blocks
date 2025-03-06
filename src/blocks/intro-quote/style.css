@@ -1,7 +1,7 @@
 .evolutio-quote-block {
     position: relative;
+    margin-top: 3rem;
     padding: 20px;
-    background-color: #f9f9f9;
 }
 
 .evolutio-quote-content {
@@ -41,16 +41,20 @@
 
 .evolutio-quote-link {
     display: flex;
-    margin-bottom: 2rem;
+    margin-bottom: 5rem;
     justify-content: flex-end;
     column-gap: 0.25rem;
     font-size: 1rem;
     font-weight: 600;
+}
+
+.evolutio-quote-link a {
+    display: inline-flex;
     color: var(--wp--preset--color--accent);
     text-decoration: none;
 }
 
-.evolutio-quote-link:hover {
+.evolutio-quote-link a:hover {
     color: var(--wp--preset--color--accent-2);
     text-decoration: underline;
 }

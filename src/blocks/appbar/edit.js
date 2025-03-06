@@ -134,7 +134,7 @@ export default function Edit({ attributes, setAttributes }) {
                             </span>
                         ))}
                     </nav>
-                    <span className="evolutio-appbar__button" >Contact</span>
+                    <span className="evolutio-appbar__button evolutio-plain-btn" >Contact</span>
                 </div>
             </div>
             <div {...useBlockProps({ className: "evolutio-appbar-mobile-container" })}>
@@ -160,7 +160,7 @@ export default function Edit({ attributes, setAttributes }) {
                                 </span>
                             </li>
                         ))}
-                        <span className="evolutio-appbar__button">Contactez-nous</span>
+                        <span className="evolutio-appbar__button evolutio-plain-btn">Contactez-nous</span>
                     </ul>
                 </nav>
             </div>
