@@ -55,20 +55,19 @@ if (!function_exists('evolutio_render_member_card')) {
 
 		ob_start();
 ?>
-		<div class="evolutio-memberslist-card">
+		<a href="#<?php echo esc_attr($member->ID); ?>"
+			class="evolutio-memberslist-card"
+			data-id="<?php echo esc_attr($member->ID); ?>"
+			class="evolutio-memberslist-card">
 			<img class="evolutio-memberslist-card-photo" src="<?php echo $profile_image_src ?>" alt="Photograph of <?php echo $name ?>" />
-			<a
-				href="#<?php echo esc_attr($member->ID); ?>"
-				class="evolutio-memberslist-card__name"
-				data-id="<?php echo esc_attr($member->ID); ?>"
-				data-object="<?php echo esc_attr(json_encode($member)); ?>">
+			<span class="evolutio-memberslist-card__name">
 				<?php echo $name; ?>
 				<svg width="22" height="22" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path d="M9.41016 19.9201L15.9302 13.4001C16.7002 12.6301 16.7002 11.3701 15.9302 10.6001L9.41016 4.08008"
 						stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
 				</svg>
-			</a>
-		</div>
+			</span>
+		</a>
 <?php
 		return ob_get_clean();
 	}
@@ -85,9 +84,9 @@ if (!function_exists('evolutio_render_member_card')) {
 		wp_reset_postdata();
 		?>
 	</div>
-	<div id="evolutio-memberslist-modal" class="evolutio-memberslist-modal">
+	<dialog id="evolutio-memberslist-modal" class="evolutio-dialog">
 		<div class="evolutio-memberslist-modal__content">
-			<span class="evolutio-memberslist-modal__close">&times;</span>
+			<span class="evolutio-dialog__close">&times;</span>
 			<div class="evolutio-memberslist-modal__header">
 				<img class="evolutio-memberslist-modal__photo" src="" alt="Photograph of" />
 				<div class="evolutio-memberslist-modal__info">
@@ -132,5 +131,5 @@ if (!function_exists('evolutio_render_member_card')) {
 				<p class="evolutio-memberslist-modal__expertise"></p>
 			</div>
 		</div>
-	</div>
+	</dialog>
 </div>

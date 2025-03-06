@@ -15,7 +15,7 @@
  * }} Member */
 
 window.addEventListener("DOMContentLoaded", async () => {
-    const modal = document.getElementById("evolutio-memberslist-modal");
+    const modal = /** @type {HTMLDialogElement} */ (document.getElementById("evolutio-memberslist-modal"));
     const modalPhoto = /** @type {HTMLImageElement} */ (modal.querySelector(".evolutio-memberslist-modal__photo"));
     const modalTitle = modal.querySelector(".evolutio-memberslist-modal__title");
     const modalStatus = modal.querySelector(".evolutio-memberslist-modal__status");
@@ -26,7 +26,7 @@ window.addEventListener("DOMContentLoaded", async () => {
     const modalExp = modal.querySelector(".evolutio-memberslist-modal__experience");
     const modalDiplomas = modal.querySelector(".evolutio-memberslist-modal__diplomas");
     const modalExpertise = modal.querySelector(".evolutio-memberslist-modal__expertise");
-    const closeModal = modal.querySelector(".evolutio-memberslist-modal__close");
+    const closeModal = modal.querySelector(".evolutio-dialog__close");
 
     const API_URL = "/wp-json/wp/v2/team_member";
     /** @type {Map<string, Member>} */
@@ -72,16 +72,18 @@ window.addEventListener("DOMContentLoaded", async () => {
         modalExp.textContent = member.experience;
         modalDiplomas.textContent = member.diplomas;
         modalExpertise.textContent = member.expertise;
-        modal.style.display = "flex";
+        modal.showModal();
         history.replaceState(null, "", "#" + id); // Update URL
+        document.body.style.overflow = "hidden"; // Prevent scroll
     }
 
     function hideModal() {
-        modal.style.display = "none";
+        modal.close();
         history.replaceState(null, "", window.location.pathname); // Remove #id from URL
+        document.body.style.overflow = ""; // Restore scroll
     }
 
-    document.querySelectorAll(".evolutio-memberslist-card__name").forEach(link => {
+    document.querySelectorAll(".evolutio-memberslist-card").forEach(link => {
         link.addEventListener("click", function (event) {
             event.preventDefault();
             const id = this.getAttribute("data-id");
@@ -94,13 +96,6 @@ window.addEventListener("DOMContentLoaded", async () => {
     // Close modal on click outside
     window.addEventListener("click", event => {
         if (event.target === modal) {
-            hideModal();
-        }
-    });
-
-    // Close modal on Esc key press
-    window.addEventListener("keydown", event => {
-        if (event.key === "Escape") {
             hideModal();
         }
     });

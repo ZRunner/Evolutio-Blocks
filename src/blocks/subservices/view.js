@@ -1,10 +1,10 @@
 import DOMPurify from 'dompurify';
 
 window.addEventListener("DOMContentLoaded", () => {
-    const modal = document.getElementById("evolutio-subservice-modal");
+    const modal = /** @type {HTMLDialogElement} */ (document.getElementById("evolutio-subservice-modal"));
     const modalTitle = modal.querySelector(".evolutio-subservice-modal__title");
     const modalDescription = modal.querySelector(".evolutio-subservice-modal__description");
-    const closeModal = modal.querySelector(".evolutio-subservice-modal__close");
+    const closeModal = modal.querySelector(".evolutio-dialog__close");
 
     /**
      * Open the subservice modal
@@ -15,13 +15,15 @@ window.addEventListener("DOMContentLoaded", () => {
     function showModal(id, name, description) {
         modalTitle.textContent = name;
         modalDescription.innerHTML = DOMPurify.sanitize(description);
-        modal.style.display = "flex";
+        modal.showModal();
         history.replaceState(null, "", "#" + id); // Update URL
+        document.body.style.overflow = "hidden"; // Prevent scroll
     }
 
     function hideModal() {
-        modal.style.display = "none";
+        modal.close();
         history.replaceState(null, "", window.location.pathname); // Remove #id from URL
+        document.body.style.overflow = ""; // Restore scroll
     }
 
     // Handle "Read more" clicks
@@ -40,13 +42,6 @@ window.addEventListener("DOMContentLoaded", () => {
     // Close modal on click outside
     window.addEventListener("click", function (event) {
         if (event.target === modal) {
-            hideModal();
-        }
-    });
-
-    // Close modal on Esc key press
-    window.addEventListener("keydown", function (event) {
-        if (event.key === "Escape") {
             hideModal();
         }
     });

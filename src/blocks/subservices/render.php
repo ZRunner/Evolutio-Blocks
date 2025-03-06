@@ -64,11 +64,11 @@ if (!function_exists('evolutio_render_subservice_card')) {
 	endwhile;
 	wp_reset_postdata();
 	?>
-	<div id="evolutio-subservice-modal" class="evolutio-subservice-modal">
+	<dialog id="evolutio-subservice-modal" class="evolutio-dialog">
 		<div class="evolutio-subservice-modal__content">
-			<span class="evolutio-subservice-modal__close">&times;</span>
+			<span class="evolutio-dialog__close">&times;</span>
 			<h2 class="evolutio-subservice-modal__title"></h2>
 			<div class="evolutio-subservice-modal__description"></div>
 		</div>
-	</div>
+	</dialog>
 </div>
