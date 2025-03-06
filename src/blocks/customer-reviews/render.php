@@ -14,7 +14,6 @@ $reviews = new WP_Query(array(
 ?>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 <div <?php echo $containerAttributes ?>>
     <h3 class="evolutio-customer-reviews__desktop-title">Ce que vous pensez de nous</h3>
@@ -52,5 +51,7 @@ $reviews = new WP_Query(array(
             <?php endif; ?>
         </div>
         <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
     </div>
 </div>

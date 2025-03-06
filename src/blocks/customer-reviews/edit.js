@@ -1,7 +1,7 @@
 //@ts-check
 
 import { RichText, useBlockProps } from '@wordpress/block-editor';
-import { Pagination, Mousewheel } from 'swiper/modules';
+import { Pagination, Mousewheel, Navigation } from 'swiper/modules';
 import { Fragment } from 'react/jsx-runtime';
 import Swiper from 'swiper';
 import { useEntityRecords } from '@wordpress/core-data';
@@ -57,13 +57,17 @@ export default function Edit({ attributes, setAttributes }) {
 
     useEffect(() => {
         const swiperInstance = new Swiper('.swiper', {
-            modules: [Pagination, Mousewheel],
+            modules: [Pagination, Mousewheel, Navigation],
             spaceBetween: 32,
             slidesPerView: "auto",
             pagination: {
                 el: ".swiper-pagination",
                 clickable: true,
                 dynamicBullets: reviews.length > 3
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
             },
             mousewheel: { forceToAxis: true }
         });
@@ -116,6 +120,8 @@ export default function Edit({ attributes, setAttributes }) {
                         )}
                     </div>
                     <div className="swiper-pagination"></div>
+                    <div className="swiper-button-prev"></div>
+                    <div className="swiper-button-next"></div>
                 </div>
             </div>
         </Fragment>

@@ -1,12 +1,13 @@
 .evolutio-customer-reviews {
     padding: 4rem 12vw;
+    --swiper-navigation-top-offset: calc(50% - 1.5rem);
+    --swiper-theme-color: var(--wp--preset--color--accent);
 }
 
 .evolutio-customer-reviews__desktop-title {
-    margin: 2.5rem 0;
+    margin: 0 0 1rem;
     font-size: 2.5rem;
     line-height: 130%;
-    color: var(--wp--preset--color--primary);
 }
 
 .evolutio-customer-reviews__mobile-title {
@@ -24,13 +25,15 @@
 }
 
 .evolutio-customer-reviews__description {
+    max-width: 45rem;
     font-size: 1rem;
     line-height: 1.4rem;
+    letter-spacing: 0.02px;
 }
 
 .evolutio-customer-reviews__readmore {
     display: flex;
-    margin: 1.5rem 0 3rem;
+    margin: 2.25rem 0 3rem;
     column-gap: 0.25rem;
     align-items: center;
     font-size: 1rem;
@@ -42,14 +45,6 @@
 .evolutio-customer-reviews__readmore:hover {
     color: var(--wp--preset--color--accent-2);
     text-decoration: underline;
-}
-
-.evolutio-customer-reviews__reviews {
-    display: flex;
-    flex-direction: row;
-    gap: 2rem;
-    margin: 0 -12vw;
-    padding: 1rem 12vw;
 }
 
 .evolutio-customer-reviews .swiper-slide {
@@ -74,6 +69,11 @@
 
 .evolutio-customer-reviews .swiper-pagination-bullet-active {
     background-color: var(--wp--preset--color--accent);
+}
+
+.evolutio-customer-reviews .swiper-button-next,
+.evolutio-customer-reviews .swiper-button-prev {
+    opacity: 0.8;
 }
 
 .evolutio-customer-review__role {
