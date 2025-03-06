@@ -1,5 +1,5 @@
 .evolutio-services {
-    padding: 3rem 12vw;
+    padding: 4.5rem 12vw;
     background-color: var(--wp--preset--color--base);
 }
 
@@ -13,8 +13,11 @@
 
 @media (max-width: 782px) {
     .evolutio-services {
-        row-gap: 1rem;
         padding: 3.5rem 2rem;
+    }
+
+    .evolutio-services__innercomponents {
+        row-gap: 1rem;
     }
 }
 
@@ -88,6 +91,11 @@
 
 .evolutio-service-card__mobile-content {
     display: none;
+    flex-direction: row;
+    column-gap: 0.25rem;
+    height: 3.875rem;
+    justify-content: space-between;
+    align-items: center;
 }
 
 @media (min-width: 1600px) {
@@ -100,6 +108,7 @@
     .evolutio-service-card {
         width: 95%;
         max-width: 95%;
+        border-radius: 15px;
     }
 
     .evolutio-service-card__desktop-content {
@@ -121,9 +130,5 @@
 
     .evolutio-service-card__mobile-content {
         display: flex;
-        flex-direction: row;
-        column-gap: 0.25rem;
-        justify-content: space-between;
-        align-items: center;
     }
 }

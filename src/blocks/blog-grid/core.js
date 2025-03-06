@@ -32,7 +32,7 @@ window.addEventListener("DOMContentLoaded", () => {
             '<div class="evolutio-bloggrid-date">' + formattedDate + '</div>' +
             '<div class="evolutio-bloggrid-excerpt">' + DOMPurify.sanitize(post.excerpt.rendered) + '</div>' +
             '<div class="evolutio-bloggrid-readmore">' +
-            '<a href="' + post.link + '" class="evolutio-bloggrid-readmore-link">Lire la suite</a>' +
+            '<a href="' + post.link + '" class="evolutio-bloggrid-readmore-link evolutio-link">Lire la suite</a>' +
             '</div>' +
             '</div>'
         );
