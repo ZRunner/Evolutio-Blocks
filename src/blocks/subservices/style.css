@@ -86,13 +86,30 @@
     }
 }
 
+#evolutio-subservice-modal .evolutio-dialog__close {
+    position: sticky;
+    width: max-content;
+    margin-left: auto;
+    display: block;
+    top: 0;
+    transform: translate(1rem, -1rem);
+    right: 0;
+    height: 0;
+}
+
 .evolutio-subservice-modal__title {
     font-size: 1.5rem;
     font-weight: 600;
-    margin: 0 0 1rem;
+    margin: 0 1.5rem 1rem 0;
 }
 
 .evolutio-subservice-modal__description {
     font-size: 1rem;
     line-height: 1.4;
+}
+
+@media (max-width: 782px) {
+    #evolutio-subservice-modal .evolutio-dialog__close {
+        transform: none;
+    }
 }
