@@ -14,11 +14,11 @@ $contactUrl = $attributes['contactUrl'];
                 </a>
             <?php endforeach; ?>
         </nav>
-        <a class="evolutio-appbar__button evolutio-plain-btn" href=<?php echo esc_attr($contactUrl) ?>>Contact</a>
+        <a class="evolutio-appbar__button evolutio-no-hover" href=<?php echo esc_attr($contactUrl) ?>>Contact</a>
     </div>
 </div>
 <div class="evolutio-appbar-mobile-container">
-    <a class="evolutio-appbar-brand-container" href="/">
+    <a class="evolutio-appbar-brand-container evolutio-no-hover" href="/">
         <img src="<?php echo esc_url(get_site_icon_url()); ?>" alt="<?php echo esc_attr(get_bloginfo('name')); ?> Logo"
             width="50" height="50" />
         <span><?php echo esc_html($websiteName); ?></span>
@@ -40,7 +40,7 @@ $contactUrl = $attributes['contactUrl'];
                     </a>
                 </li>
             <?php endforeach; ?>
-            <a class="evolutio-appbar__button evolutio-plain-btn" href=<?php echo esc_attr($contactUrl) ?>>Contactez-nous</a>
+            <a class="evolutio-appbar__button evolutio-no-hover" href=<?php echo esc_attr($contactUrl) ?>>Contactez-nous</a>
         </ul>
     </nav>
 </div>

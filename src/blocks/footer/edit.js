@@ -187,7 +187,7 @@ export default function Edit({ attributes, setAttributes }) {
                 <div className="evolutio-footer__top">
                     <div className="evolutio-footer__contactbox">
                         <div className="evolutio-footer__contacttext" >Prenez directement rendez-vous !</div>
-                        <span title={contactUrl} className="evolutio-footer__contactbutton evolutio-plain-btn">
+                        <span title={contactUrl} className="evolutio-footer__contactbutton evolutio-no-hover">
                             <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path fillRule="evenodd" clipRule="evenodd" d="M12.3744 13.8375C17.6931 19.1548 18.8997 13.0033 22.2862 16.3874C25.5511 19.6514 27.4275 20.3053 23.291 24.4406C22.7729 24.857 19.4808 29.8667 7.9115 18.3006C-3.65927 6.73302 1.34748 3.43761 1.76399 2.91962C5.91052 -1.22719 6.55318 0.660193 9.81802 3.92412C13.2045 7.30968 7.05557 8.52023 12.3744 13.8375Z" fill="#F9F8F9" />
                             </svg>

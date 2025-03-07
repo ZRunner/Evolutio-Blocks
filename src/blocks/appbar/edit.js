@@ -134,11 +134,11 @@ export default function Edit({ attributes, setAttributes }) {
                             </span>
                         ))}
                     </nav>
-                    <span className="evolutio-appbar__button evolutio-plain-btn" >Contact</span>
+                    <span className="evolutio-appbar__button evolutio-no-hover">Contact</span>
                 </div>
             </div>
             <div {...useBlockProps({ className: "evolutio-appbar-mobile-container" })}>
-                <span className="evolutio-appbar-brand-container">
+                <span className="evolutio-appbar-brand-container evolutio-no-hover">
                     <img src={siteIconUrl} alt={(websiteName ?? siteTitle) + ' Logo'}
                         width="50" height="50" />
                     <span>{websiteName ?? siteTitle}</span>
@@ -160,7 +160,7 @@ export default function Edit({ attributes, setAttributes }) {
                                 </span>
                             </li>
                         ))}
-                        <span className="evolutio-appbar__button evolutio-plain-btn">Contactez-nous</span>
+                        <span className="evolutio-appbar__button evolutio-no-hover">Contactez-nous</span>
                     </ul>
                 </nav>
             </div>
