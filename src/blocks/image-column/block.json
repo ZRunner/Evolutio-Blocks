@@ -1,0 +1,56 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "evolutio/image-column",
+    "version": "0.1.0",
+    "title": "Image column",
+    "category": "design",
+    "icon": "format-image",
+    "description": "A double column with an image and some rich text.",
+    "allowedBlocks": [
+        "core/paragraph"
+    ],
+    "attributes": {
+        "align": {
+            "type": "string",
+            "default": "full"
+        },
+        "image": {
+            "type": "object",
+            "default": null
+        },
+        "desktopDirection": {
+            "enum": [
+                "row",
+                "row-reverse"
+            ],
+            "default": "row"
+        },
+        "mobileDirection": {
+            "enum": [
+                "column",
+                "column-reverse"
+            ],
+            "default": "column"
+        },
+        "imageFit": {
+            "enum": [
+                "cover",
+                "contain"
+            ],
+            "default": "cover"
+        }
+    },
+    "supports": {
+        "align": [
+            "full"
+        ],
+        "color": {
+            "background": true,
+            "text": false
+        },
+        "html": false
+    },
+    "style": "file:./style-index.css",
+    "editorScript": "file:./index.js"
+}

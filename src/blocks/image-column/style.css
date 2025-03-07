@@ -1,0 +1,38 @@
+.evolutio-imagecolumn {
+    display: flex;
+    flex-direction: row;
+    padding: 4.5rem 12vw;
+    gap: 4rem;
+}
+
+.evolutio-imagecolumn--desktop-row-reverse {
+    flex-direction: row-reverse;
+}
+
+.evolutio-imagecolumn>div {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.evolutio-imagecolumn__image>img {
+    width: 100%;
+    min-height: 80%;
+    object-fit: cover;
+    border-radius: 25px;
+}
+
+.evolutio-imagecolumn__content h2 {
+    margin: 0;
+}
+
+@media (max-width: 782px) {
+    .evolutio-imagecolumn--mobile-column {
+        flex-direction: column;
+    }
+
+    .evolutio-imagecolumn--mobile-column-reverse {
+        flex-direction: column-reverse;
+    }
+}
