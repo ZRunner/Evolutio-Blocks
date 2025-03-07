@@ -34,7 +34,7 @@
 
 @media (max-width: 782px) {
     .evolutio-text-container {
-        bottom: 5rem;
+        bottom: 4rem;
     }
 
     .evolutio-background-container {
@@ -43,6 +43,8 @@
 
     .evolutio-title {
         font-size: 3rem;
+        font-weight: 300;
+        letter-spacing: 2px;
     }
 
     .evolutio-subtitle {
@@ -59,7 +61,6 @@
 
     .evolutio-title {
         font-size: 2.25rem;
-        font-weight: 500;
     }
 
     .evolutio-subtitle {
