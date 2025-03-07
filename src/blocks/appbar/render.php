@@ -23,13 +23,11 @@ $contactUrl = $attributes['contactUrl'];
             width="50" height="50" />
         <span><?php echo esc_html($websiteName); ?></span>
     </a>
-    <input type="checkbox" id="nav-toggle" class="evolutio-mobile-nav-toggle" hidden />
-    <label for="nav-toggle" class="evolutio-burger-icon">
-        <svg width="24" height="24" viewBox="0 0 24 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <line x1="1.43945" y1="1.5" x2="22.068" y2="1.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-            <line x1="1.43945" y1="9.04297" x2="22.068" y2="9.04297" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-            <line x1="1.43945" y1="16.5859" x2="22.068" y2="16.5859" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-        </svg>
+    <input type="checkbox" id="nav-toggle" hidden />
+    <label for="nav-toggle" id="nav-toggle-label">
+        <div class="top line"></div>
+        <div class="middle line"></div>
+        <div class="bottom line"></div>
     </label>
     <nav class="evolutio-mobile-nav">
         <ul>
