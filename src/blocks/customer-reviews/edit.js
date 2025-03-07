@@ -6,6 +6,7 @@ import { Fragment } from 'react/jsx-runtime';
 import Swiper from 'swiper';
 import { useEntityRecords } from '@wordpress/core-data';
 import { useEffect } from 'react';
+import { useRichtextDefaultFormats } from '../../wp_selector';
 
 /** @typedef {{
  *  id: number,
@@ -16,14 +17,6 @@ import { useEffect } from 'react';
  *  }
  *  modified_gmt: string,
  * }} Review */
-
-/**
- * @type {{
-*   data: typeof import('@wordpress/data'),
-* }}
-*/
-// @ts-ignore
-const wp = window.wp;
 
 const DISABLED_FORMATS = [
     "core/image",
@@ -44,8 +37,7 @@ export default function Edit({ attributes, setAttributes }) {
     /** @type {Review[]} */
     const reviews = useEntityRecords('postType', 'review', { per_page: -1, status: 'publish' }).records ?? [];
 
-    /** @type {{name: string}[]} */
-    const defaultFormats = wp.data.select('core/rich-text').getFormatTypes();
+    const defaultFormats = useRichtextDefaultFormats();
     const allowedFormats = defaultFormats.filter(format => !DISABLED_FORMATS.includes(format.name)).map(format => format.name)
 
     /**

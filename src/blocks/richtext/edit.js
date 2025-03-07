@@ -5,15 +5,7 @@ import { PanelRow } from '@wordpress/components';
 import { PanelBody } from '@wordpress/components';
 import { __experimentalUnitControl as UnitControl } from '@wordpress/components';
 import { Fragment } from 'react';
-
-
-/**
- * @type {{
-*   data: typeof import('@wordpress/data'),
-* }}
-*/
-// @ts-ignore
-const wp = window.wp;
+import { useRichtextDefaultFormats } from '../../wp_selector';
 
 const DISABLED_FORMATS = [
     "core/image",
@@ -31,8 +23,7 @@ const DISABLED_FORMATS = [
 export default function Edit({ attributes, setAttributes }) {
     const { text, maxWidth } = attributes;
 
-    /** @type {{name: string}[]} */
-    const defaultFormats = wp.data.select('core/rich-text').getFormatTypes();
+    const defaultFormats = useRichtextDefaultFormats();
     const allowedFormats = defaultFormats.filter(format => !DISABLED_FORMATS.includes(format.name)).map(format => format.name);
 
     /**

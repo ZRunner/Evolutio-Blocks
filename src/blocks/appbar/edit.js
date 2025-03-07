@@ -4,15 +4,7 @@ import { useBlockProps } from '@wordpress/block-editor';
 import { TextControl, Button, PanelBody, PanelRow } from '@wordpress/components';
 import { InspectorControls } from '@wordpress/block-editor';
 import { Fragment } from 'react/jsx-runtime';
-import { useEffect, useState } from 'react';
-
-/**
- * @type {{
-*   data: typeof import('@wordpress/data'),
-* }}
-*/
-// @ts-ignore
-const wp = window.wp;
+import { useWpSelector } from '../../wp_selector';
 
 /**
  * @argument {import('@wordpress/blocks').BlockEditProps<
@@ -25,24 +17,16 @@ const wp = window.wp;
  */
 export default function Edit({ attributes, setAttributes }) {
     const { links, websiteName, contactUrl } = attributes;
-    const [siteIconUrl, setSiteIconUrl] = useState('');
 
-    /** @type {string | undefined} */
-    const siteIconId = wp.data.select('core').getEntityRecord('root', 'site')?.site_icon;
-    const siteAttributes = wp.data.select('core').getSite();
-    /** @type {string} */
-    const siteTitle = siteAttributes?.title ?? "";
-
-    useEffect(() => {
-        if (!siteIconId) return;
-        const unsubscribe = wp.data.subscribe(() => {
-            const media = wp.data.select('core').getMedia(siteIconId);
-            if (media) {
-                setSiteIconUrl(media.source_url);
-                unsubscribe(); // Stop subscribing once data is fetched.
-            }
-        });
-    }, [siteIconId]);
+    const siteIconId = useWpSelector(
+        (store) => /** @type {{site_icon?: string}} */(store.getEntityRecord('root', 'site'))?.site_icon,
+        []
+    );
+    const siteTitle = useWpSelector((store) => store.getSite(undefined)?.title ?? "", []);
+    const siteIconUrl = useWpSelector(
+        (store) => store.getMedia(siteIconId)?.source_url,
+        [siteIconId]
+    )
 
     const addLink = () => {
         setAttributes({ links: [...links, { label: '', url: '' }] });

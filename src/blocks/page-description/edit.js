@@ -3,14 +3,7 @@
 import { useBlockProps, RichText, InspectorControls } from '@wordpress/block-editor';
 import { PanelRow, PanelBody, Button } from '@wordpress/components';
 import { Fragment } from 'react';
-
-/**
- * @type {{
-*   data: typeof import('@wordpress/data'),
-* }}
-*/
-// @ts-ignore
-const wp = window.wp;
+import { useRichtextDefaultFormats } from '../../wp_selector';
 
 const DISABLED_FORMATS = [
     "core/image",
@@ -33,8 +26,7 @@ export default function Edit({ attributes, setAttributes }) {
     const { text } = attributes;
     const textAlign = attributes.style?.typography?.textAlign;
 
-    /** @type {{name: string}[]} */
-    const defaultFormats = wp.data.select('core/rich-text').getFormatTypes();
+    const defaultFormats = useRichtextDefaultFormats();
     const allowedFormats = defaultFormats.filter(format => !DISABLED_FORMATS.includes(format.name)).map(format => format.name);
 
     /**
