@@ -14,6 +14,9 @@ build/
 # VSCode settings folder
 .vscode/
 
+# JetBrains IDEs settings folder
+.idea/
+
 # Dependency directories
 node_modules/
 
