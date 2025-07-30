@@ -1,7 +1,7 @@
 {
     "autoload": {
         "psr-4": {
-            "Evolutio\\": "src/"
+            "Evolutio\\": "build/"
         }
     },
     "require-dev": {
