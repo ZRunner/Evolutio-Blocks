@@ -6,7 +6,7 @@ namespace Evolutio;
  * Plugin Name:       Evolutio Blocks
  * Description:       A cool blocks collection for the Evolutio Avocats lawfirm website.
  * Requires at least: 6.7
- * Requires PHP:      7.0
+ * Requires PHP:      8.1
  * Version:           1.0.0
  * Author:            Arthur Blaise
  * License:           GPL-2.0-or-later
