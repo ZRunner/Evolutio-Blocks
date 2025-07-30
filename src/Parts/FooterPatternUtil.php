@@ -29,29 +29,14 @@ class FooterPatternUtil
 ?>
         <!-- wp:evolutio/footer {
             "links": [
-                {
-                    "label":"Paris",
-                    "icon":"hammer",
-                    "url":"http://www.avocatparis.org/annuaire"
-                },
-                {
-                    "label":"Lyon",
-                    "icon":"hammer",
-                    "url":"http://www.barreaulyon.com/Recherche-avocat"
-                },{
-                    "label":"Dijon",
-                    "icon":"hammer",
-                    "url":""
-                },
-                {
-                    "label":"LinkedIn",
-                    "icon":"linkedin",
-                    "url":"https://www.linkedin.com/company/evolutio-avocats/"
-                }
+                {"label":"Paris", "icon":"hammer", "url":"http://www.avocatparis.org/annuaire"},
+								{"label":"Lyon", "icon":"hammer", "url":"http://www.barreaulyon.com/Recherche-avocat"},
+								{"label":"Dijon", "icon":"hammer", "url":"https://www.barreau-dijon.avocat.fr/trouver-un-avocat"},
+								{"label":"LinkedIn", "icon":"linkedin", "url":"https://www.linkedin.com/company/evolutio-avocats"}
             ],
             "brandImage": {
                 "id":306,
-                "url":"http://localhost:8888/wp-content/uploads/2025/01/Evolutio-1.png"
+                "url":"/wp-content/uploads/2025/01/Evolutio-1.png"
             },
             "align":"full"
         } /-->
