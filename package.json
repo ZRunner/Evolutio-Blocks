@@ -15,11 +15,11 @@
 		"start": "wp-scripts start --webpack-copy-php"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^30.18.0"
+		"@wordpress/scripts": "^30.20.0"
 	},
 	"dependencies": {
-		"@wordpress/core-data": "^7.25.0",
+		"@wordpress/core-data": "^7.27.0",
 		"dompurify": "^3.2.6",
-		"swiper": "^11.2.5"
+		"swiper": "^11.2.10"
 	}
 }
