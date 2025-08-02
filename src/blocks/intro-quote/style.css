@@ -1,61 +1,51 @@
+.wp-block-evolutio-intro-quote {
+	position: relative;
+}
+
 .evolutio-quote-block {
-    position: relative;
-    margin-top: 3rem;
-    padding: 20px;
+	position: relative;
+	margin-top: 3rem;
+	padding: 20px;
 }
 
 .evolutio-quote-content {
-    position: relative;
-    z-index: 1;
-    margin: 0;
-    padding: 1.5rem;
-    padding-right: 0;
-    font-size: 1.125rem;
-    font-style: italic;
-    line-height: 2.5rem;
+	position: relative;
+	z-index: 1;
+	margin: 0;
+	padding: 1.5rem;
+	padding-right: 0;
+	font-size: 1.125rem;
+	font-style: italic;
+	line-height: 2.5rem;
+	text-align: center;
 }
 
 @media (max-width: 600px) {
-    .evolutio-quote-content {
-        padding-left: 0;
-    }
-}
-
-.evolutio-quote-svg {
-    position: absolute;
-    width: 80px;
-    height: 80px;
-    fill: #d2d3d3;
-}
-
-.evolutio-quote-svg-start {
-    top: 10px;
-    left: 10px;
-}
-
-.evolutio-quote-svg-end {
-    bottom: 10px;
-    right: 10px;
-    transform: rotate(180deg);
+	.evolutio-quote-content {
+		padding-left: 0;
+	}
 }
 
 .evolutio-quote-bg {
 	z-index: -1;
 	position: absolute;
-	top: 5%;
-	left: 10%;
-	height: 90%;
-	width: 80%;
+	top: 12%;
+	height: 80%;
+	max-width: 70%;
 	object-fit: contain;
-	opacity: 10%;
+	opacity: 20%;
 	filter: saturate(0);
+	scale: 1.5;
+	left: 0;
+	right: 0;
+	margin: auto;
 }
 
 .evolutio-quote-link {
-    display: flex;
-    margin-bottom: 5rem;
-    justify-content: flex-end;
-    column-gap: 0.25rem;
-    font-size: 1rem;
-    font-weight: 600;
+	display: flex;
+	margin-bottom: 5rem;
+	justify-content: flex-end;
+	column-gap: 0.25rem;
+	font-size: 1rem;
+	font-weight: 600;
 }
