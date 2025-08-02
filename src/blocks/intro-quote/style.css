@@ -39,6 +39,18 @@
     transform: rotate(180deg);
 }
 
+.evolutio-quote-bg {
+	z-index: -1;
+	position: absolute;
+	top: 5%;
+	left: 10%;
+	height: 90%;
+	width: 80%;
+	object-fit: contain;
+	opacity: 10%;
+	filter: saturate(0);
+}
+
 .evolutio-quote-link {
     display: flex;
     margin-bottom: 5rem;

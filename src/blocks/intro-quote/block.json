@@ -27,6 +27,11 @@
         }
     },
     "supports": {
+		"background": {
+			"backgroundImage": true,
+			"backgroundSize": false,
+			"__experimentalSkipSerialization": true
+		},
         "html": false
     },
     "style": "file:./style-index.css",

@@ -2,6 +2,7 @@
 $content = $attributes['content'];
 $link = $attributes['link'];
 $linkText = $attributes['linkText'];
+$backgroundImage = $attributes['style']['background']['backgroundImage']['url'] ?? '';
 
 $containerAttributes = get_block_wrapper_attributes();
 
@@ -35,6 +36,7 @@ if (!function_exists('render_quote_icon')) {
             <?php echo $content; ?>
         </div>
         <?php echo render_quote_icon('evolutio-quote-svg evolutio-quote-svg-end'); ?>
+			<img class="evolutio-quote-bg" src="<?php echo esc_url($backgroundImage); ?>" alt="Evolutio logo">
     </div>
     <div class="evolutio-quote-link">
         <a class="evolutio-link" href="<?php echo esc_url($link); ?>">
