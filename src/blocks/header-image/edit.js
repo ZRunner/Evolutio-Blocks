@@ -1,16 +1,16 @@
 //@ts-check
 
-import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
-import { TextControl, TextareaControl, PanelBody, PanelRow } from '@wordpress/components';
-import { Fragment } from 'react/jsx-runtime';
+import { InspectorControls, useBlockProps } from "@wordpress/block-editor";
+import { PanelBody, PanelRow, TextareaControl, TextControl } from "@wordpress/components";
+import { Fragment } from "react/jsx-runtime";
 
 /**
- * @argument {import('@wordpress/blocks').BlockEditProps<
+ * @argument {import("@wordpress/blocks").BlockEditProps<
  * 	{
  * 		title: string,
  * 		subtitle: string
  *	}>} props
- * @return {import('react').ReactElement} Element to render.
+ * @return {import("react").ReactElement} Element to render.
  */
 export default function Edit({ attributes, setAttributes }) {
 	const { title, subtitle } = attributes;
@@ -24,7 +24,7 @@ export default function Edit({ attributes, setAttributes }) {
 	// override component style with new background image
 	const customStyle = {
 		...props.style,
-		backgroundImage: backgroundImageStyle,
+		backgroundImage: backgroundImageStyle
 	};
 
 	/**
@@ -39,7 +39,7 @@ export default function Edit({ attributes, setAttributes }) {
 	 */
 	const updateSubtitle = (value) => {
 		setAttributes({ subtitle: value });
-	}
+	};
 
 	return (
 		<Fragment>
@@ -74,19 +74,19 @@ export default function Edit({ attributes, setAttributes }) {
 }
 
 /**
- * 
+ *
  * @param {{backgroundColor: unknown, backgroundImage: unknown}} params
  * @returns {string}
  */
 function getBackgroundImageStyle({ backgroundColor, backgroundImage }) {
 	if (typeof backgroundImage !== "string") return null;
 	if (!backgroundColor) return backgroundImage;
-	if (typeof backgroundColor !== 'string') {
+	if (typeof backgroundColor !== "string") {
 		return null;
 	}
 	if (!backgroundImage) return null; // No image, no style.
 
-	if (backgroundColor.startsWith('#')) {
+	if (backgroundColor.startsWith("#")) {
 		return `linear-gradient(${backgroundColor}A3 17%, ${backgroundColor}CC 50%), ${backgroundImage}`;
 	}
 }
