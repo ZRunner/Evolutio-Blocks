@@ -33,7 +33,7 @@ body.page-template-contact .evolutio-footer__contactbox {
     gap: 0.75rem;
     align-items: center;
     background: var(--wp--preset--color--accent);
-    color: #F4EDE5;
+    color: var(--wp--preset--color--accent-orange);
     border: none;
     border-radius: 25px;
     padding: 8px 16px;

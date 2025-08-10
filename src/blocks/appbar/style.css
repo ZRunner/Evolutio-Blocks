@@ -75,11 +75,12 @@
 
 .evolutio-appbar__button {
     background: var(--wp--preset--color--accent);
-    color: white;
+    color: var(--wp--preset--color--accent-orange);
     border: none;
     border-radius: 25px;
     padding: 8px 14px;
     font-size: 1rem;
+	font-weight: 500;
     transition: background-color 0.3s ease;
     text-decoration: none;
 }
