@@ -1,9 +1,9 @@
 //@ts-check
 
-import { InspectorControls, RichText, useBlockProps } from '@wordpress/block-editor';
-import { PanelBody, PanelRow, SelectControl } from '@wordpress/components';
-import { useEntityRecords } from '@wordpress/core-data';
-import { Fragment } from 'react';
+import { InspectorControls, RichText, useBlockProps } from "@wordpress/block-editor";
+import { PanelBody, PanelRow, SelectControl } from "@wordpress/components";
+import { useEntityRecords } from "@wordpress/core-data";
+import { Fragment } from "react";
 
 
 /** @typedef {{
@@ -15,7 +15,7 @@ import { Fragment } from 'react';
 
 /** @typedef {{
  *  id: number,
- *  parent_service_id: number,
+ *  parent_service_ids: number[],
  *  sub_service_description: string,
  *  title: {
  *   rendered: string,
@@ -49,7 +49,7 @@ export default function Edit({ attributes, setAttributes }) {
 		order: 'asc',
 	}).records ?? [];
 	if (parentServiceId) {
-		subServices = subServices.filter((service) => service.parent_service_id === parentServiceId);
+		subServices = subServices.filter((service) => service.parent_service_ids.includes(parentServiceId));
 	}
 
 	/**

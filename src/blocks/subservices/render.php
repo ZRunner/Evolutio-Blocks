@@ -14,12 +14,12 @@ $args = array(
 	'meta_query'     => array()
 );
 
-// If a parent service is selected, filter by meta key "parent_service_id"
+// If a parent service is selected, filter by meta key "parent_service_ids" (a list of IDs)
 if ($parent_service_id) {
 	$args['meta_query'][] = array(
-		'key'     => 'parent_service_id',
+		'key'     => 'parent_service_ids',
 		'value'   => $parent_service_id,
-		'compare' => '='
+		'compare' => 'LIKE'
 	);
 }
 
@@ -32,7 +32,7 @@ if (!function_exists('evolutio_render_subservice_card')) {
 	 * @param WP_Post $subservice The sub-service post object.
 	 * @return string The HTML output.
 	 */
-	function evolutio_render_subservice_card($subservice)
+	function evolutio_render_subservice_card(WP_Post $subservice): string
 	{
 		$name = esc_html(get_the_title($subservice));
 		$description = wp_kses_post(get_post_meta($subservice->ID, 'sub_service_description', true));

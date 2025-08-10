@@ -70,29 +70,41 @@ abstract class ServicesPostUtil
 		add_action('admin_init', [self::class, '_RegisterChildCustomColumns']);
 	}
 
-	public static function _RegisterChildCustomColumns()
+	public static function _RegisterChildCustomColumns(): void
 	{
 		add_filter('manage_sub_service_posts_columns', function ($columns) {
-			$columns['parent_service'] = __('Parent Service', 'textdomain');
+			$columns['parent_services'] = __('Parent Services', 'textdomain');
 			return $columns;
 		});
 
 		add_filter('manage_edit-sub_service_sortable_columns', function ($columns) {
-			$columns['parent_service'] = 'parent_service_id';
+			$columns['parent_services'] = 'parent_services';
 			return $columns;
 		});
 
 		add_action('manage_sub_service_posts_custom_column', function ($column, $post_id) {
-			if ($column === 'parent_service') {
-				$parent_id = get_post_meta($post_id, 'parent_service_id', true);
-				if ($parent_id) {
-					$parent_title = get_the_title($parent_id);
-					echo esc_html($parent_title);
+			if ($column === 'parent_services') {
+				$parent_ids = get_post_meta($post_id, 'parent_service_ids', true);
+				if (!empty($parent_ids) && is_array($parent_ids)) {
+					$parent_titles = array_map('get_the_title', $parent_ids);
+					echo esc_html(implode(', ', $parent_titles));
 				} else {
 					echo '<em>' . __('None', 'textdomain') . '</em>';
 				}
 			}
 		}, 10, 2);
+
+		// Add sorting
+		add_action('pre_get_posts', function ($query) {
+			if (!is_admin() || !$query->is_main_query()) {
+				return;
+			}
+
+			if ($query->get('orderby') === 'parent_services') {
+				$query->set('meta_key', 'parent_service_ids');
+				$query->set('orderby', 'meta_value');
+			}
+		});
 	}
 
 	/**
@@ -167,16 +179,20 @@ abstract class ServicesPostUtil
 	{
 		register_rest_field(
 			'sub_service',
-			'parent_service_id',
+			'parent_service_ids',
 			array(
 				'get_callback' => function ($object) {
-					return (int) get_post_meta($object['id'], 'parent_service_id', true);
+					$parent_ids = get_post_meta($object['id'], 'parent_service_ids', true);
+					return is_array($parent_ids) ? array_map('intval', $parent_ids) : [];
 				},
 				'update_callback' => null,
 				'schema' => array(
-					'type' => 'integer',
+					'type' => 'array',
+					'items' => array(
+						'type' => 'integer',
+					),
 					'arg_options' => array(
-						'sanitize_callback' => 'absint'
+						'sanitize_callback' => 'wp_parse_id_list',
 					),
 				),
 			)
@@ -217,8 +233,8 @@ abstract class ServicesPostUtil
 		}
 		// Check if a parent service is selected
 		if (get_post_type($post_id) === 'sub_service') {
-			if (empty($_POST['parent_service_id'])) {
-				wp_die(__('A parent service is required for sub-services.', 'textdomain'));
+			if (empty($_POST['parent_service_ids'])) {
+				wp_die(__('At least one parent service is required for sub-services.', 'textdomain'));
 			}
 		}
 
@@ -229,8 +245,9 @@ abstract class ServicesPostUtil
 				}
 			}
 		} else if (get_post_type($post_id) === 'sub_service') {
-			if (isset($_POST['parent_service_id'])) {
-				update_post_meta($post_id, 'parent_service_id', intval($_POST['parent_service_id']));
+			if (isset($_POST['parent_service_ids'])) {
+				$parent_service_ids = array_map('intval', $_POST['parent_service_ids']);
+				update_post_meta($post_id, 'parent_service_ids', $parent_service_ids);
 			}
 			if (isset($_POST['sub_service_description'])) {
 				$allowed_tags = array(
@@ -262,7 +279,7 @@ abstract class ServicesPostUtil
 		$service_description = get_post_meta($post->ID, 'service_description', true);
 
 		wp_nonce_field('save_service_meta', 'service_meta_nonce');
-?>
+		?>
 		<p>
 			<label for="service_mobile_name">Short name (on mobile screens)</label><br>
 			<input type="text" id="service_mobile_name" name="service_mobile_name" value="<?php echo esc_attr($service_mobile_name); ?>" required size="30" />
@@ -275,32 +292,36 @@ abstract class ServicesPostUtil
 			<label for="service_description">Service description</label><br>
 			<textarea id="service_description" name="service_description" rows="4" cols="50" required><?php echo esc_textarea($service_description); ?></textarea>
 		</p>
-	<?php
+		<?php
 	}
 
 	public static function _ChildHtml($post): void
 	{
-		$parent_service_id = get_post_meta($post->ID, 'parent_service_id', true);
+		$parent_service_ids = get_post_meta($post->ID, 'parent_service_ids', true) ?: [];
 		$services = get_posts(array('post_type' => 'service', 'numberposts' => -1));
 
 		wp_nonce_field('save_service_meta', 'service_meta_nonce');
-	?>
+		?>
 
 		<p>
-			<label for="parent_service_id">Select Parent Service:</label><br>
-			<select id="parent_service_id" name="parent_service_id" required>
-				<option value="" disabled <?php echo empty($parent_service_id) ? 'selected' : ''; ?>>Select a Parent</option>
-				<?php
-				foreach ($services as $service) {
-					$selected = ($service->ID == $parent_service_id) ? 'selected' : '';
-					echo '<option value="' . $service->ID . '" ' . $selected . '>' . esc_html($service->post_title) . '</option>';
-				}
-				?>
-			</select>
+			<label for="parent_service_ids">Select Parent Services:</label><br>
+		<div style="display: flex; flex-wrap: wrap; gap: 10px;">
+			<?php foreach ($services as $service): ?>
+				<label style="display: flex; align-items: center; gap: 5px; border: 1px solid #ddd; padding: 5px 10px; border-radius: 5px; background: #f9f9f9;">
+					<input
+						type="checkbox"
+						name="parent_service_ids[]"
+						value="<?php echo $service->ID; ?>"
+						<?php echo in_array($service->ID, (array)$parent_service_ids) ? 'checked' : ''; ?>
+					/>
+					<?php echo esc_html($service->post_title); ?>
+				</label>
+			<?php endforeach; ?>
+		</div>
 		</p>
 
 		<label for="sub_service_description">Sub-Service description</label><br>
-<?php
+		<?php
 
 		$content = get_post_meta($post->ID, 'sub_service_description', true);
 		$editor_settings = array(
