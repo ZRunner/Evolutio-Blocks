@@ -12,13 +12,13 @@ if (!function_exists('get_background_image_style')) {
 			return $backgroundImage;
 		}
 		if ($backgroundColor[0] === '#') {
-			$startColor = $backgroundColor . 'A3';
-			$endColor = $backgroundColor . 'CC';
+			$startColor = $backgroundColor . '33';
+			$endColor = $backgroundColor . '73';
 		} else {
 			// else, it's a color name
 			$colorVar = 'var(--wp--preset--color--' . $backgroundColor . ')';
-			$startColor = "color-mix(in srgb, {$colorVar} 64%, transparent)";
-			$endColor = "color-mix(in srgb, {$colorVar} 80%, transparent)";
+			$startColor = "color-mix(in srgb, {$colorVar} 20%, transparent)";
+			$endColor = "color-mix(in srgb, {$colorVar} 45%, transparent)";
 		}
 		return "linear-gradient({$startColor} 17%, {$endColor} 50%), url({$backgroundImage})";
 	}
