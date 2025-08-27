@@ -1,6 +1,6 @@
 {
 	"name": "evolutio-blocks",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"description": "A cool blocks collection for the Evolutio Avocats lawfirm website.",
 	"author": "Arthur Blaise",
 	"license": "GPL-2.0-or-later",
@@ -15,11 +15,15 @@
 		"start": "wp-scripts start --webpack-copy-php"
 	},
 	"devDependencies": {
+		"@wordpress/block-editor": "^15.2.0",
+		"@wordpress/blocks": "^15.2.0",
+		"@wordpress/components": "^30.2.0",
 		"@wordpress/scripts": "^30.20.0"
 	},
 	"dependencies": {
 		"@wordpress/core-data": "^7.27.0",
 		"dompurify": "^3.2.6",
+		"react": "^18.3.1",
 		"swiper": "^11.2.10"
 	}
 }
