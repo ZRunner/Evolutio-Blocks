@@ -1,0 +1,47 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "evolutio/member-single",
+	"version": "0.1.0",
+	"title": "Single member",
+	"category": "design",
+	"icon": "businessperson",
+	"description": "A simple row for one member.",
+	"allowedBlocks": [
+		"core/paragraph"
+	],
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": "full"
+		},
+		"image": {
+			"type": "object",
+			"default": null
+		},
+		"header": {
+			"type": "string",
+			"default": "My Section"
+		},
+		"title": {
+			"type": "string",
+			"default": "Our Dragon"
+		},
+		"subtitle": {
+			"type": "string",
+			"default": "Looks great, doesn't it?"
+		}
+	},
+	"supports": {
+		"align": [
+			"full"
+		],
+		"color": {
+			"background": true,
+			"text": false
+		},
+		"html": false
+	},
+	"style": "file:./style-index.css",
+	"editorScript": "file:./index.js"
+}

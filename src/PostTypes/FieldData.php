@@ -21,8 +21,9 @@ class FieldData
     private string $label;
     private string $placeholder;
     private int $max_size;
+	private bool $required;
 
-    public function __construct(string $name, FieldType $type, string $label, string $placeholder, int $max_size)
+    public function __construct(string $name, FieldType $type, string $label, string $placeholder, int $max_size, bool $required = true)
     {
         if ($max_size < 0) {
             throw new InvalidArgumentException("max_size must be a positive integer.");
@@ -33,6 +34,7 @@ class FieldData
         $this->label = $label;
         $this->placeholder = $placeholder;
         $this->max_size = $max_size;
+		$this->required = $required;
     }
 
     public function getName(): string
@@ -59,4 +61,9 @@ class FieldData
     {
         return $this->max_size;
     }
+
+	public function isRequired(): bool
+	{
+		return $this->required;
+	}
 }
