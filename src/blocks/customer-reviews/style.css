@@ -63,6 +63,10 @@
 .evolutio-customer-reviews .swiper-button-next,
 .evolutio-customer-reviews .swiper-button-prev {
     opacity: 0.8;
+
+	svg {
+		display: none;
+	}
 }
 
 .evolutio-customer-review__role {
