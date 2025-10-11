@@ -30,6 +30,10 @@
 		"subtitle": {
 			"type": "string",
 			"default": "Looks great, doesn't it?"
+		},
+		"pageUrl": {
+			"type": "string",
+			"default": null
 		}
 	},
 	"supports": {

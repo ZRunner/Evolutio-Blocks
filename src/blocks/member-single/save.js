@@ -13,11 +13,12 @@ import { InnerBlocks, useBlockProps } from "@wordpress/block-editor";
  *      header: string,
  *      title: string,
  *      subtitle: string,
+ *      pageUrl: string,
  *	}>} props
  * @return {import("react").ReactElement} Element to render.
  */
 export default function Save({ attributes }) {
-	const { image, header, title, subtitle } = attributes;
+	const { image, header, title, subtitle, pageUrl } = attributes;
 
 	let containerClassName = "evolutio-membersingle";
 
@@ -43,6 +44,9 @@ export default function Save({ attributes }) {
 				</div>
 				<div className="evolutio-membersingle__content">
 					<InnerBlocks.Content />
+					{pageUrl && <a className="evolutio-membersingle__link evolutio-link" href={pageUrl}>
+						Lire la suite
+					</a>}
 				</div>
 			</div>
 		</div>

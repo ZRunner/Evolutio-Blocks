@@ -23,11 +23,12 @@ const PLACEHOLDER_IMAGE = "/wp-includes/images/media/default.svg";
  *       header: string,
  *       title: string,
  *       subtitle: string,
+ *       pageUrl: string,
  *	}>} props
  * @return {import("react").ReactElement} Element to render.
  */
 export default function Edit({ attributes, setAttributes }) {
-	const { image, header, title, subtitle } = attributes;
+	const { image, header, title, subtitle, pageUrl } = attributes;
 
 	let containerClassName = "evolutio-membersingle";
 
@@ -76,6 +77,13 @@ export default function Edit({ attributes, setAttributes }) {
 	 */
 	const updateSubtitle = (newSubtitle) => {
 		setAttributes({ subtitle: newSubtitle });
+	};
+
+	/**
+	 * @param {string} newPageUrl The new URL to redirect to.
+	 */
+	const updatePageUrl = (newPageUrl) => {
+		setAttributes({ pageUrl: newPageUrl || null });
 	};
 
 	return (
@@ -128,6 +136,15 @@ export default function Edit({ attributes, setAttributes }) {
 							__next40pxDefaultSize
 						/>
 					</PanelRow>
+					<PanelRow>
+						<TextControl
+							label="Page URL"
+							value={pageUrl}
+							onChange={updatePageUrl}
+							__nextHasNoMarginBottom
+							__next40pxDefaultSize
+						/>
+					</PanelRow>
 				</PanelBody>
 			</InspectorControls>
 			<div {...useBlockProps({ className: containerClassName })}>
@@ -154,6 +171,9 @@ export default function Edit({ attributes, setAttributes }) {
 							template={COLUMN_TEMPLATE}
 							templateLock="all"
 						/>
+						{pageUrl && <a className="evolutio-membersingle__link evolutio-link">
+							Lire la suite
+						</a>}
 					</div>
 				</div>
 			</div>
