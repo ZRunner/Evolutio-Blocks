@@ -32,8 +32,7 @@
 	height: 80%;
 	max-width: 70%;
 	object-fit: contain;
-	opacity: 20%;
-	filter: saturate(0);
+	filter: saturate(0) opacity(0.2);
 	scale: 1.5;
 	left: calc(-75vw + 600px);
 	right: 0;
