@@ -65,7 +65,7 @@ function evolutio_register_post_types(): void
 
 add_action('init', __NAMESPACE__ . '\\evolutio_register_post_types');
 
-function evolutio_redirect_blog_url()
+function evolutio_redirect_blog_url(): void
 {
 	if (is_feed() || !isset($_SERVER['REQUEST_URI'])) {
 		return; // Skip redirection for feeds
@@ -79,3 +79,23 @@ function evolutio_redirect_blog_url()
 	}
 }
 add_action('template_redirect', __NAMESPACE__ . '\\evolutio_redirect_blog_url');
+
+// Allow 'unsafe' ports from the token endpoint of the OpenID Connect plugin
+add_filter('http_allowed_safe_ports', function ($allowed_ports, $host, $url) {
+	$settings = get_option('openid_connect_generic_settings');
+	if (empty($settings['endpoint_token'])) {
+		return $allowed_ports;
+	}
+
+	$configured = wp_parse_url($settings['endpoint_token']);
+	if ($configured === false || empty($configured['host']) || $host !== $configured['host']) {
+		return $allowed_ports;
+	}
+
+	if (!empty($configured['port'])) {
+		$allowed_ports[] = (int) $configured['port'];
+	}
+
+	return array_unique($allowed_ports);
+
+}, 10, 3);
